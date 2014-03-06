@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+.map_unselect_normal {
+	stroke: white;
+	stroke-width: 0.26;
+	fill: #0A64A4;
+}
+.map_unselect_hover {
+	stroke: white;
+	stroke-width: 0.26;
+	fill: #0A64A4;
+	opacity: 0.5;
+}
+.map_select_normal {
+	stroke: white;
+	stroke-width: 0.26;
+	fill: #FF9000;
+}
+.map_select_hover {
+	stroke: white;
+	stroke-width: 0.26;
+	fill: #FF9000;
+	opacity: 0.5;
+}

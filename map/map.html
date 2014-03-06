@@ -1,104 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src = "http://d3js.org/d3.v3.min.js" charset = "utf-8"></script>
-        <script src="http://d3js.org/topojson.v1.min.js"></script>
-        <style>
-			mapbasic {
-				stroke: white;
-				stroke-width: 0.26;
-			}
-			.mapnormal mapbasic {
-				fill: #0A64A4;
-			}
-			.mapmouseover mapbasic {
-				fill: #3E94D1;
-			}
-			.mapselect mapbasic {
-				fill: #FF9000;
-			}
-		</style>
+        <script src="http://d3js.org/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="http://d3js.org/topojson.v1.min.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="map.css"/>
     </head>
     <body>
-        <script type = "text/javascript">
-			var colorNormal = "#006fff";
-			var colorNormalHighLight = "#4d9aff";
-			var colorSelect = "#FF9000";
-			var colorSelectHighLight = "#ffb14d";
-            var width = 480;
-            var height = 540;
-			var mapSel = Array(60);
-			for (var i = 0; i < 60; i++)
-				mapSel[i] = false;
-            var svg = d3.select("body")
-                        .append("svg")
-                        .attr("width", width)
-                        .attr("height", height);
-                        
-            d3.json("uk_police_force_areas.topojson", function(error, uk) {
-                areaSet = topojson.feature(uk, uk.objects.uk_police_force_areas);
-                
-                var projection = d3.geo.albers()
-                                       .center([0, 55.4])
-                                       .rotate([4.4, 0])
-                                       .parallels([50, 60])
-                                       .scale(2600)
-                                       .translate([width / 2, height / 2]);
-                var path = d3.geo.path()
-                                 .projection(projection);
-                svg.selectAll(".uk_police_force_areas")
-					.data(areaSet.features)
-					.enter()	
-					.append("path")
-                    .attr("d", path)
-                    .attr("style", "stroke:black;stroke-width:0.26")
-					.attr("fill", colorNormal)
-					.attr("id", function(d) {
-						return d.id;
-					})
-					.on("mouseover", function(d) {
-						//console.log(this);
-						var color;
-						if (mapSel[d.id]) {
-							color = colorSelectHighLight;
-						} else {
-							color = colorNormalHighLight;
-						}
-						d3.select(this)
-							.attr("fill", color);
-					})
-					.on("mouseout", function(d) {
-						var color;
-						if (mapSel[d.id]) {
-							color = colorSelect;
-						} else {
-							color = colorNormal;
-						}
-						d3.select(this)
-							.attr("fill", color);
-					})
-					.on("mousedown", function(d) {
-						var color;
-						if (mapSel[d.id]) {
-							color = colorNormalHighLight;
-							mapSel[d.id] = false;
-						} else {
-							color = colorSelectHighLight;
-							mapSel[d.id] = true;
-						}
-						d3.select(this)
-							.attr("fill", color);
-					});
-				
-				
-				areas = document.getElementsByTagName("path");
-				svg.selectAll(".uk_police_force_areas")
-					
-				
-				d3.json("crimeJsonwithTotal.json", function(error, count) {
-					console.log(count);
-				})
-            });
-        </script>
+        <script src="map.js" type="text/javascript" charset="utf-8"></script>
     </body>
 </html>
