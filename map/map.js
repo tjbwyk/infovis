@@ -19,6 +19,18 @@ var height = 600;
 var mapSel = Array(MAXN);
 for (var i = 0; i < MAXN; i++)
 	mapSel[i] = false;
+	
+// Function to get the selected districts, return value is an array of IDs
+function get_selected_distIDs() {
+	distIDs = new Array();
+	for (var i = 0; i < MAXN; i++) {
+		if (mapSel[i]) {
+			distIDs.push(i);
+		}
+	}
+	return distIDs;
+}
+
 var svg = d3.select("#map")
 			.append("svg")
 			.attr("width", width)
