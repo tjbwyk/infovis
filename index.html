@@ -2,89 +2,22 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<title>Timeline</title>
+		<title>Crime in UK</title>
 		<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
 		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
         <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-        <script src="http://d3js.org/topojson.v1.min.js" type="text/javascript" charset="utf-8"></script>     
+        <script src="http://d3js.org/topojson.v1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/global.js" type="text/javascript" charset="utf-8"></script>  
         <link rel="stylesheet" type="text/css" href="css/map.css"/>
-		<script src="js/global.js" type="text/javascript" charset="utf-8"></script>
-<style>
-
-svg {
-  font: 10px sans-serif;
-}
-
-.bar {
-  fill: blue;
-}
-
-.bar:hover {
-  fill: steelblue ;
-}
-
-.tick,
-.d3-tip {
-  line-height: 1;
-  font-family: Helvetica, Arial, sans-serif,Gotham, "Helvetica Neue";
-  font-size: 9px;
-  padding: 9px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-}
-
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 6px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
-
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-
-.grid-background {
-  fill: #ddd;
-}
-
-.grid line,
-.grid path {
-  fill: none;
-  stroke: #fff;
-  shape-rendering: crispEdges;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.brush .extent {
-  stroke: #fff;
-  fill-opacity: .125;
-  shape-rendering: crispEdges;
-}
-
-</style>
+        <link rel="stylesheet" type="text/css" href="css/timeline.css"/>
 	</head>
-<body>
-<div id="map">
-	        <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+    <body>
+    	<div id="map">
+			<script src="js/map.js" type="text/javascript" charset="utf-8"></script>
             <div id="tooltip" class="hidden">name</div>
         </div>
-</body>
-<script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
+        <div id="timeline">
+        	<script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
+        </div>
+    </body>
 </html>
