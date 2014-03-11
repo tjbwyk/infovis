@@ -15,9 +15,9 @@ function get_selected_distIDs() {
 			distIDs.push(i);
 		}
 	}
-	return distIDs;
 	console.log(mapSel);
 	console.log("end");
+	return distIDs;
 }
 
 var id = get_selected_distIDs();
