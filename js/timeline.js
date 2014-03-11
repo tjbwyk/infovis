@@ -49,7 +49,7 @@ var svg = d3.select("body").append("svg")
 
 var barchart = svg.selectAll(".bar");
 
-d3.csv("total.csv", function(error, data) {
+d3.csv("data/total.csv", function(error, data) {
    
   data = type(data);
 
