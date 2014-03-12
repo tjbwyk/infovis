@@ -1,8 +1,8 @@
-var margin = {top: 20, right: 50, bottom: 80, left: 60},
+var margin = {top: 40, right: 50, bottom: 80, left: 60},
     margin2 = {top: 130, right: 50, bottom: 20, left: 60},
     width = screen.width - margin.left - margin.right - 30,
-    height = 100,	//bar chart height
-    height2 = 50;	//timeline height
+    height = 80,	//bar chart height
+    height2 = 30;	//timeline height
 
 var parseDate = d3.time.format("%b %Y").parse;
 
@@ -12,7 +12,7 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
 	
   //bar chart domain  
   x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
-  y.domain([420000, 620000]);
+  y.domain([420000, 620000]).ticks(5);
   
  //timeline domain as same as bar chart domain
   y2.domain(y.domain());
@@ -47,28 +47,43 @@ var svg = d3.select("body").append("svg")
     .attr("height", height + margin.top + margin.bottom)
 	.call(tip);
 
-var barchart = svg.selectAll(".bar");
-
-d3.csv("data/total.csv", function(error, data) {
-	for (var i in TCrimes){
-   console.log(new Date(TCrimes[i].date));
-	}
+/*d3.csv("data/total.csv", function(error, data) {
+	
 
   data = type(data);
+*/
+addTimeline(TCrimes);
+
+//add timeline
+function addTimeline(d){
+	
+//console.log(d[0]);
 
 //it is the bar chart	  	  
-  barchart.append("path")
-      .data(data)
+  svg.selectAll(".bar").append("path")
+      .data(d)
 	  .enter()
 	  .append("rect")
 	  .attr("class", "bar")
-	  .attr("x", function(d) { return x(d.date); })
+	  .attr("x", function(d) {
+		  
+		  console.log(d + "x");
+		  
+		  for (var i in d){
+			  console.log(new Date(d[i].date));
+			   console.log(d);
+  		 		return x(new Date(d[i].date));
+			};
+		   })
 	  .attr("width", 23)
-	  .attr("y", function(d) { return y(d.TotalCrime); })
-	  .attr("height", function(d) { return height - y(d.TotalCrime); })
+	  .attr("y", function(d) { 
+	  console.log(d + "y");
+	  return y(d.crimes); })
+	  .attr("height", function(d) { return height - y(d.crimes); })
 	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
 	  .on('mouseover', tip.show)
       .on('mouseout', tip.hide);
+	  	  
 
 //add y axis	  
    svg.append("g")
@@ -101,8 +116,10 @@ var gBrush = svg.append("g")
 
 gBrush.selectAll("rect")
     .attr("height", height);
+
+}
 		  
-});
+/*});*/
 
 
 function brushed() {

@@ -23,13 +23,11 @@ $.ajax({
   dataType: 'json',
   success: function (json) {
 	  
-  console.log(json + "end");
+  //console.log(json + "end");
 	// Save data to TCrimes variable
     TCrimes = json;
   }
 });
-
-console.log(TCrimes);
 
 // Function to get population number of district
 function get_population(distID)
