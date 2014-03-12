@@ -1,3 +1,6 @@
+	var padding = 50; //Padding between the visualization and the border of the SVG canvas
+	var barPadding = 10; //Padding between bars
+
 var MAXN = 50;
 
 var mapSel = Array(MAXN);

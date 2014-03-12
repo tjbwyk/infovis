@@ -12,7 +12,7 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
 	
   //bar chart domain  
   x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
-  y.domain([420000, 620000]).ticks(5);
+  y.domain([420000, 620000]);
   
  //timeline domain as same as bar chart domain
   y2.domain(y.domain());
@@ -47,6 +47,7 @@ var svg = d3.select("#timeline").append("svg")
     .attr("height", height + margin.top + margin.bottom)
 	.call(tip);
 
+
 /*d3.csv("data/total.csv", function(error, data) {
 	
 
@@ -57,13 +58,18 @@ addTimeline(TCrimes);
 //add timeline
 function addTimeline(d){
 	
-//console.log(d[0]);
+console.log(d[0]);
+	//A short-hand, so that I don't have to write "d3.select('svg')" all the time below
 
+	//Draw the bars
+	svg.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
+	svg.selectAll("rect").data(d).enter().append("rect")
+/*	
 //it is the bar chart	  	  
-  svg.selectAll(".bar").append("path")
+  svg.selectAll(".bar")
       .data(d)
 	  .enter()
-	  .append("rect")
+	  .append("rect")*/
 	  .attr("class", "bar")
 	  .attr("x", function(d) {
 		  
