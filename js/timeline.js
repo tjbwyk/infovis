@@ -42,7 +42,7 @@ var brush = d3.svg.brush()
     .on("brush", brushed);
 
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#timeline").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 	.call(tip);
@@ -126,7 +126,6 @@ function brushed() {
       extent1[1] = d3.time.month.ceil(extent0[1]);
     }
   }
-
   d3.select(this).call(brush.extent(extent1));
 }
 
