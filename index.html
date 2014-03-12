@@ -4,11 +4,10 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
 		<title>Crime Analysis in UK</title>
-		<script type="text/javascript" src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
-		<script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-        <script type="text/javascript" src="http://d3js.org/topojson.v1.min.js" charset="utf-8"></script>
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js" charset="utf-8"></script>
-        <script type="text/javascript" src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/topojson.v1.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/jquery-2.1.0.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/d3.tip.v0.6.3.js" charset="utf-8"></script>
         
         <script type="text/javascript" src="js/dataAPI.js" charset="utf-8"></script>
 		<script src="js/global.js" type="text/javascript" charset="utf-8"></script>
@@ -17,12 +16,25 @@
         <link rel="stylesheet" type="text/css" href="css/timeline.css"/>
 	</head>
     <body>
-    	<div id="map">
-			<script src="js/map.js" type="text/javascript" charset="utf-8"></script>
-            <div id="tooltip" class="hidden">name</div>
-        </div>
-        <div id="timeline">
-        	<script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
-        </div>
+    	<table border="0">
+        	<tr>
+            	<td>
+                    <div id="map">
+                        <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+                        <div id="tooltip" class="hidden">name</div>
+                    </div>
+                </td>
+                <td>
+                	sad story
+                </td>
+            </tr>
+            <tr>
+            	<td colspan=2>
+                    <div id="timeline">
+                        <script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
+                    </div>
+                <td>
+            </tr>
+        </table>
     </body>
 </html>
