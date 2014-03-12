@@ -15,8 +15,21 @@ $.ajax({
   }
 });
 
+var TCrimes;
+// Loading in JSON file	
+$.ajax({
+  url: 'data/total.json',
+  async: false,
+  dataType: 'json',
+  success: function (json) {
+	  
+  console.log(json + "end");
+	// Save data to TCrimes variable
+    TCrimes = json;
+  }
+});
 
-/// Defining functions to read data:
+console.log(TCrimes);
 
 // Function to get population number of district
 function get_population(distID)
@@ -53,6 +66,11 @@ function get_officers(distID)
 	return officers;
 }
 
+//Funtion to get total crime number of more than one district in whole year
+function get_dists_year(distIDs, year)
+{
+	
+}
 
 /*
 /// Examples calling the functions:
