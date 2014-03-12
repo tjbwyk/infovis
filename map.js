@@ -98,6 +98,8 @@ d3.json("uk_police_force_areas.topojson", function(error, uk) {
 			}
 			d3.select(this)
 			.attr("class", mapclass);
+			
+			id = get_selected_distIDs();
 		})
 		.on("mousemove", function(d) {
 			var mousePos = d3.mouse(this);
@@ -108,4 +110,5 @@ d3.json("uk_police_force_areas.topojson", function(error, uk) {
 				.style("font-family", "Helvetica, Arial, sans-serif,Gotham");
 			d3.select("#tooltip").classed("hidden", false);
 		});
+		
 });

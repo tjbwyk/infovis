@@ -1,6 +1,6 @@
 var margin = {top: 20, right: 50, bottom: 80, left: 60},
     margin2 = {top: 130, right: 50, bottom: 20, left: 60},
-    width = 960 - margin.left - margin.right,
+    width = screen.width - margin.left - margin.right - 30,
     height = 100,	//bar chart height
     height2 = 50;	//timeline height
 
@@ -12,7 +12,7 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
 	
   //bar chart domain  
   x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
-  y.domain([428000, 620000]);
+  y.domain([420000, 620000]);
   
  //timeline domain as same as bar chart domain
   y2.domain(y.domain());
@@ -50,7 +50,10 @@ var svg = d3.select("body").append("svg")
 var barchart = svg.selectAll(".bar");
 
 d3.csv("total.csv", function(error, data) {
-   
+	for (var i in TCrimes){
+   console.log(new Date(TCrimes[i].date));
+	}
+	
   data = type(data);
 
 //it is the bar chart	  	  
@@ -60,7 +63,7 @@ d3.csv("total.csv", function(error, data) {
 	  .append("rect")
 	  .attr("class", "bar")
 	  .attr("x", function(d) { return x(d.date); })
-	  .attr("width", 20)
+	  .attr("width", 23)
 	  .attr("y", function(d) { return y(d.TotalCrime); })
 	  .attr("height", function(d) { return height - y(d.TotalCrime); })
 	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
@@ -98,9 +101,9 @@ var gBrush = svg.append("g")
 
 gBrush.selectAll("rect")
     .attr("height", height);
-	   
-	  
+		  
 });
+
 
 function brushed() {
   var extent0 = brush.extent(),
