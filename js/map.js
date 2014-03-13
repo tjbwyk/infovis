@@ -13,8 +13,8 @@ for (var i = 0; i < MAXN; i++) {
 	fakeColor1[i] = [Math.round(255 * fakeRatio[i]), Math.round(144 * fakeRatio[i]), 0];
 }
 
-var widthM = 400,
-	heightM = 600;
+var widthM = 350,
+	heightM = 400;
 		
 var svgM = d3.select("#map")
 			.append("svg")
@@ -25,7 +25,7 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 	areaSet = topojson.feature(uk, uk.objects.uk_police_force_areas);
 	
 	var projection = d3.geo.albers()
-						   .center([0, 55.4])
+						   .center([1.5, 53.5])
 						   .rotate([4.4, 0])
 						   .parallels([50, 60])
 						   .scale(3000)
