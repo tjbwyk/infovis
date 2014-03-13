@@ -63,7 +63,6 @@ console.log(d[0]);
 
 	//Draw the bars
 	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
-	console.log("1");
 	svgTimeline.selectAll("rect").data(d).enter().append("rect")
 /*	
 //it is the bar chart	  	  
@@ -71,6 +70,7 @@ console.log(d[0]);
       .data(d)
 	  .enter()
 	  .append("rect")*/
+	  .attr("id", "bars")
 	  .attr("class", "bar")
 	  .attr("x", function(d) {
 		  
@@ -85,7 +85,8 @@ console.log(d[0]);
 	  .attr("width", 23)
 	  .attr("y", function(d) { 
 	  console.log(d + "y");
-	  return y(d.crimes); })
+	  return y(d.crimes);
+	  })
 	  .attr("height", function(d) { return height - y(d.crimes); })
 	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
 	  .on('mouseover', tip.show)
