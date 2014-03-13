@@ -73,20 +73,14 @@ console.log(d[0]);
 	  .attr("id", "bars")
 	  .attr("class", "bar")
 	  .attr("x", function(d) {
-		  
-		  console.log(d + "x");
-		  
-		  for (var i in d){
-			  console.log(new Date(d[i].date));
-			   console.log(d);
-  		 		return x(new Date(d[i].date));
-			};
-		   })
+		  console.log(d);
+		  return x(new Date(d.date));
+		 })
 	  .attr("width", 23)
 	  .attr("y", function(d) { 
-	  console.log(d + "y");
-	  return y(d.crimes);
-	  })
+		  console.log(d + "y");
+		  return y(d.crimes);
+		 })
 	  .attr("height", function(d) { return height - y(d.crimes); })
 	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
 	  .on('mouseover', tip.show)
