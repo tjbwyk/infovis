@@ -42,7 +42,7 @@ var brush = d3.svg.brush()
     .on("brush", brushed);
 
 
-var svg = d3.select("#timeline").append("svg")
+var svgTimeline = d3.select("#timeline").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 	.call(tip);
@@ -62,11 +62,12 @@ console.log(d[0]);
 	//A short-hand, so that I don't have to write "d3.select('svg')" all the time below
 
 	//Draw the bars
-	svg.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
-	svg.selectAll("rect").data(d).enter().append("rect")
+	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
+	console.log("1");
+	svgTimeline.selectAll("rect").data(d).enter().append("rect")
 /*	
 //it is the bar chart	  	  
-  svg.selectAll(".bar")
+  svgTimeline.selectAll(".bar")
       .data(d)
 	  .enter()
 	  .append("rect")*/
@@ -92,20 +93,20 @@ console.log(d[0]);
 	  	  
 
 //add y axis	  
-   svg.append("g")
+   svgTimeline.append("g")
    	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
       .attr("class", "y axis")
       .call(yAxis);
 	  
 // add timeline below the bar chart	  
-svg.append("rect")
+svgTimeline.append("rect")
     .attr("class", "grid-background")
     .attr("width",  width)
     .attr("height", height)
 	.attr("transform", "translate( " + margin.left + "," + margin2.top + ")");
 
 //add x axis
-svg.append("g")
+svgTimeline.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate( " + margin.left + "," + margin2.top + ")")
     .call(xAxis)
@@ -115,7 +116,7 @@ svg.append("g")
     .attr("transform", "rotate(90)")
     .style("text-anchor", null);
 	
-var gBrush = svg.append("g")
+var gBrush = svgTimeline.append("g")
     .attr("class", "brush")
 	.attr("transform", "translate( " + margin.left + "," + margin2.top + ")")
     .call(brush);

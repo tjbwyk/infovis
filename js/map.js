@@ -16,7 +16,7 @@ for (var i = 0; i < MAXN; i++) {
 var widthM = 350,
 	heightM = 400;
 		
-var svgM = d3.select("#map")
+var svgMap = d3.select("#map")
 			.append("svg")
 			.attr("width", widthM)
 			.attr("height", heightM);
@@ -32,7 +32,7 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 						   .translate([widthM / 2, heightM / 2]);
 	var path = d3.geo.path()
 					 .projection(projection);
-	svgM.selectAll(".uk_police_force_areas")
+	svgMap.selectAll(".uk_police_force_areas")
 		.data(areaSet.features)
 		.enter()	
 		.append("path")
