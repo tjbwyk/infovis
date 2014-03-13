@@ -15,11 +15,19 @@ for (var i = 0; i < MAXN; i++) {
 
 var widthM = 350,
 	heightM = 400;
+
+var mapTip = d3.tip()
+	.attr("id", "map")
+	.attr("class", "d3-tip")
+	.html(function(d) {
+		return nameList[d.id - 1];
+	});
 		
 var svgMap = d3.select("#map")
 			.append("svg")
 			.attr("width", widthM)
-			.attr("height", heightM);
+			.attr("height", heightM)
+			.call(mapTip);
 
 d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 	areaSet = topojson.feature(uk, uk.objects.uk_police_force_areas);
@@ -70,7 +78,8 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 				.attr("class", mapclass);
 		})
 		.on("mouseout", function(d) {
-			d3.select("#tooltip").classed("hidden", true);
+			//d3.select("#tooltip").classed("hidden", true);
+			mapTip.hide(d);
 			if (d.id == 44)
 				return;
 			var mapclass;
@@ -103,12 +112,13 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 		})
 		.on("mousemove", function(d) {
 			var mousePos = d3.mouse(this);
-			d3.select("#tooltip")
-				.style("left", mousePos[0] + "px")
-				.style("top", mousePos[1] + 30 + "px")
-				.text(nameList[d.id - 1])
-				.style("font-family", "Helvetica, Arial, sans-serif,Gotham");
-			d3.select("#tooltip").classed("hidden", false);
+//			d3.select("#tooltip")
+//				.style("left", mousePos[0] + "px")
+//				.style("top", mousePos[1] + 30 + "px")
+//				.text(nameList[d.id - 1])
+//				.style("font-family", "Helvetica, Arial, sans-serif,Gotham");
+//			d3.select("#tooltip").classed("hidden", false);
+			mapTip.show(d);
 		});
 		
 });

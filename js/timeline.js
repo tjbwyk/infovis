@@ -10,12 +10,12 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
     y = d3.scale.linear().range([height, 0]),
     y2 = d3.scale.linear().range([height2, 0]);
 	
-  //bar chart domain  
-  x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
-  y.domain([420000, 620000]);
-  
- //timeline domain as same as bar chart domain
-  y2.domain(y.domain());
+	//bar chart domain  
+	x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
+	y.domain([420000, 620000]);
+	
+	//timeline domain as same as bar chart domain
+	y2.domain(y.domain());
   
   	
 var brush = d3.svg.brush()
@@ -30,12 +30,13 @@ var xAxis = d3.svg.axis().scale(x).orient("bottom"),
 //brush x axis
 var bxA = xAxis.ticks(d3.time.month).tickPadding(0);
 	
-var tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    return "Month: <span style='color: yellow'>" + d.month + "</span><br> TotalCrime: <span style='color: yellow'>"  + d.TotalCrime + "</span>";
-  })
+var barTip = d3.tip()
+	.attr('id', 'timeline')
+	.attr('class', 'd3-tip')
+	.offset([-10, 0])
+	.html(function(d) {
+		return "Month: <span style='color: yellow'>" + d.month + "</span><br> TotalCrime: <span style='color: yellow'>"  + d.crimes + "</span>";
+	})
 
 var brush = d3.svg.brush()
     .x(x)
@@ -45,7 +46,7 @@ var brush = d3.svg.brush()
 var svgTimeline = d3.select("#timeline").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-	.call(tip);
+	.call(barTip);
 
 
 /*d3.csv("data/total.csv", function(error, data) {
@@ -83,8 +84,8 @@ console.log(d[0]);
 		 })
 	  .attr("height", function(d) { return height - y(d.crimes); })
 	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
-	  .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+	  .on('mouseover', barTip.show)
+      .on('mouseout', barTip.hide);
 	  	  
 
 //add y axis	  
