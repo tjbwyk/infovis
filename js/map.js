@@ -22,7 +22,7 @@ var mapTip = d3.tip()
 	.html(function(d) {
 		return nameList[d.id - 1];
 	});
-		
+
 var svgMap = d3.select("#map")
 			.append("svg")
 			.attr("width", widthM)
@@ -122,3 +122,14 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 		});
 		
 });
+
+function updateMap(beginYear, beginMonth, endYear, endMonth) {
+	var crimeRate = new Array(MAXN);
+	for (var yy = beginYear, mm = beginMonth; !((yy > endYear) || (yy == endYear && mm > endMonth)); mm++) {
+		if (mm >= 12) {
+			yy++;
+			mm = 1;
+		}
+		
+	}
+}

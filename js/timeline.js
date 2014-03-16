@@ -23,7 +23,6 @@ var brush = d3.svg.brush()
     .extent([new Date(2010, 11, 1), new Date(2010, 12, 1)])
     .on("brush", brushed);
 
-  
 var xAxis = d3.svg.axis().scale(x).orient("bottom"),
     yAxis = d3.svg.axis().scale(y).orient("left");
 	
