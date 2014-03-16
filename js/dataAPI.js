@@ -46,7 +46,8 @@ function get_name(distID)
 // Function to get total crimes in a month in one district
 function get_total(distID,year,month)
 {
-	var total = myjson[distID.toString()]['crimes'][year.toString()][month.toString()]['total']
+	var total = myjson[distID.toString()]['crimes'][year.toString()][month.toString()]['total'];
+	//console.log(total);
 	return total;
 }
 
@@ -64,10 +65,18 @@ function get_officers(distID)
 	return officers;
 }
 
-//Funtion to get total crime number of more than one district in whole year
-function get_dists_year(distIDs, year)
+//Funtion to get total crime number of more than one district in whole time period
+function get_dists_all(distIDs)
 {
-	
+	var totalCrimes = 0;
+	for (i = 2011; i < 2014; i++){
+		for (j = 1; j < 13; j++){
+			totalCrimes += get_total(distIDs,i,j);
+			}
+		}
+	totalCrimes += get_total(distIDs, 2010, 12);
+	//console.log(totalCrimes);
+	return totalCrimes;
 }
 
 /*

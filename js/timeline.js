@@ -1,5 +1,5 @@
 var margin = {top: 40, right: 50, bottom: 80, left: 60},
-    margin2 = {top: 130, right: 50, bottom: 20, left: 60},
+    margin2 = {top: 130, right: 50, bottom: 20, left: 65},
     width = screen.width - margin.left - margin.right - 30,
     height = 80,	//bar chart height
     height2 = 30;	//timeline height
@@ -12,7 +12,10 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
 	
 	//bar chart domain  
 	x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
-	y.domain([420000, 620000]);
+	var tempMax = d3.max(TCrimes.map(function(d) { return d.crimes; }));
+	var tempMin = d3.min(TCrimes.map(function(d) { return d.crimes; })) - 10000;
+	
+	y.domain([tempMin, tempMax]);
 	
 	//timeline domain as same as bar chart domain
 	y2.domain(y.domain());
@@ -47,18 +50,14 @@ var svgTimeline = d3.select("#timeline").append("svg")
     .attr("height", height + margin.top + margin.bottom)
 	.call(barTip);
 
-
-/*d3.csv("data/total.csv", function(error, data) {
-	
-
-  data = type(data);
-*/
-addTimeline(TCrimes);
+addTimeline(TCrimes, null);
 
 //add timeline
-function addTimeline(d){
+function addTimeline(d, id){
 	
-console.log(d[0]);
+	if (id === null){
+	//console.log(id);
+	
 	//A short-hand, so that I don't have to write "d3.select('svg')" all the time below
 
 	//Draw the bars
@@ -73,27 +72,55 @@ console.log(d[0]);
 	  .attr("id", "bars")
 	  .attr("class", "bar")
 	  .attr("x", function(d) {
-		  console.log(d);
 		  return x(new Date(d.date));
 		 })
-	  .attr("width", 23)
+	  .attr("width", 25)
 	  .attr("y", function(d) { 
-		  console.log(d + "y");
 		  return y(d.crimes);
 		 })
 	  .attr("height", function(d) { return height - y(d.crimes); })
-	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
+	  .attr("transform", "translate( " + 65  + "," + margin.top + ")")
 	  .on('mouseover', barTip.show)
       .on('mouseout', barTip.hide);
+	}else{
+		
+		cal_crimes_perDist();				
+		
+		tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
+	    tempMin = d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000;
+	  	y.domain([tempMin, tempMax]);
+		
+	console.log("tempMax" + tempMax);
+		//console.log("total: " + num);
+	//Draw the bars
+	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
+	svgTimeline.selectAll("rect").data(dataNew).enter().append("rect")
+	
+	  .attr("id", "bars")
+	  .attr("class", "bar")
+	  .attr("x", function(d) {
+		 return x(d.date);
+		 })
+	  .attr("width", 25)
+	  .attr("y", function(d) { 
+		  return y(d.crimes);
+		 })
+	  .attr("height", function(d) { 
+	  return height - y(d.crimes);  })
+	  .attr("transform", "translate( " + 30 + "," + margin.top + ")")
+	  .on('mouseover', barTip.show)
+      .on('mouseout', barTip.hide);
+	}
 	  	  
 
-//add y axis	  
+//add y axis
    svgTimeline.append("g")
    	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
       .attr("class", "y axis")
       .call(yAxis);
 	  
 // add timeline below the bar chart	  
+svgTimeline.append("rect").remove();
 svgTimeline.append("rect")
     .attr("class", "grid-background")
     .attr("width",  width)
@@ -101,6 +128,7 @@ svgTimeline.append("rect")
 	.attr("transform", "translate( " + margin.left + "," + margin2.top + ")");
 
 //add x axis
+svgTimeline.append("g").remove();
 svgTimeline.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate( " + margin.left + "," + margin2.top + ")")
@@ -120,9 +148,7 @@ gBrush.selectAll("rect")
     .attr("height", height);
 
 }
-		  
-/*});*/
-
+		
 
 function brushed() {
   var extent0 = brush.extent(),
@@ -156,3 +182,4 @@ function type(d) {
 	}
   return d;
 }
+
