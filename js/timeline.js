@@ -62,6 +62,7 @@ function addTimeline(d, id){
 
 	//Draw the bars
 	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
+	svgTimeline.selectAll("g").remove();
 	svgTimeline.selectAll("rect").data(d).enter().append("rect")
 /*	
 //it is the bar chart	  	  
@@ -94,8 +95,8 @@ function addTimeline(d, id){
 		//console.log("total: " + num);
 	//Draw the bars
 	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
+	svgTimeline.selectAll("g").remove();
 	svgTimeline.selectAll("rect").data(dataNew).enter().append("rect")
-	
 	  .attr("id", "bars")
 	  .attr("class", "bar")
 	  .attr("x", function(d) {
