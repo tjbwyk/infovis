@@ -1,6 +1,7 @@
 var padding = 50; //Padding between the visualization and the border of the SVG canvas
 var barPadding = 10; //Padding between bars
 
+var MAXINT = 2147483647;
 var MAXN = 50;
 
 var dataTemp = {};

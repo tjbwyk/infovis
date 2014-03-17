@@ -61,9 +61,6 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 		.attr("title", function(d) {
 			return nameList[d.id - 1];
 		})
-		.attr("value", function(d) {
-			return fakeRatio[d.id - 1];
-		})
 		.on("mouseover", function(d) {
 			//console.log(this);
 			if (d.id == 44)
@@ -127,11 +124,65 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 
 function updateMap(beginYear, beginMonth, endYear, endMonth) {
 	var crimeRate = new Array(MAXN);
+	for (var dist = 0; dist < MAXN; dist++)
+		crimeRate[dist] = 0;
 	for (var yy = beginYear, mm = beginMonth; !((yy > endYear) || (yy == endYear && mm > endMonth)); mm++) {
-		if (mm >= 12) {
+		if (mm > 12) {
 			yy++;
 			mm = 1;
 		}
-		
+		for (var dist = 1; dist <= 45; dist++) {
+			var total;
+			try {
+				//console.log([yy, mm, dist, total, crimeRate[dist]]);
+				total = get_total(dist, yy, mm);
+				crimeRate[dist] += total;
+				//console.log([yy, mm, dist, total, crimeRate[dist]]);
+			} catch(e) {
+				console.log(e);
+			}
+			//console.log(dist);
+		}
 	}
+	for (var dist = 1; dist <= 45; dist++) {
+		var population;
+		try {
+			population = get_population(dist);
+			crimeRate[dist] /= population;
+		} catch(e) {
+			console.log(e);
+		}
+		//console.log(dist);
+	}
+	
+	var minTotal = MAXINT,
+		maxTotal = -MAXINT;
+	for (var dist = 1; dist <= 45; dist++) {
+		if (dist != 44) {
+			minTotal = Math.min(minTotal, crimeRate[dist]);
+			maxTotal = Math.max(maxTotal, crimeRate[dist]);
+		}
+	}
+	
+	var colorRate = new Array(MAXN);
+	for (var dist = 1; dist <= 45; dist++) {
+		if (dist != 44) {
+			colorRate[dist] = (crimeRate[dist] - minTotal) / (maxTotal - minTotal);
+		} else {
+			colorRate[dist] = -1;
+		}
+		fakeColor0[i] = [Math.round(10 * colorRate[i]), Math.round(100 * colorRate[i]), Math.round(164 * colorRate[i])];
+		fakeColor1[i] = [Math.round(255 * colorRate[i]), Math.round(144 * colorRate[i]), 0];
+	}
+	
+	console.log(colorRate);
+	svgMap.selectAll("path")
+		.data(areaSet.features)
+		.attr("value", function(d) {
+			return colorRate[d.id];
+		})
+		.attr("fill", function(d) {
+			var k = d.id;
+			return "rgb(" + fakeColor0[k][0] + "," + fakeColor0[k][1] + "," + fakeColor0[k][2] + ")";
+		})
 }

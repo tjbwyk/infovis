@@ -173,6 +173,16 @@ function brushed() {
     }
   }
   d3.select(this).call(brush.extent(extent1));
+  
+  beginDate = extent1[0];
+  endDate = d3.time.day.offset(extent1[1], -1);
+  console.log([beginDate, endDate]);
+  
+  var beginYear = beginDate.getFullYear() + 1,
+  	  beginMonth = beginDate.getMonth() + 1,
+	  endYear = endDate.getFullYear() + 1,
+	  endMonth = endDate.getMonth() + 1;
+  updateMap(beginYear, beginMonth, endYear, endMonth);
 }
 
 function type(d) {
@@ -183,4 +193,3 @@ function type(d) {
 	}
   return d;
 }
-
