@@ -172,8 +172,8 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 		} else {
 			colorRate[dist] = -1;
 		}
-		fakeColor0[i] = [Math.round(10 * colorRate[i]), Math.round(100 * colorRate[i]), Math.round(164 * colorRate[i])];
-		fakeColor1[i] = [Math.round(255 * colorRate[i]), Math.round(144 * colorRate[i]), 0];
+		fakeColor0[dist] = [Math.round(10 * colorRate[dist]), Math.round(100 * colorRate[dist]), Math.round(164 * colorRate[dist])];
+		fakeColor1[dist] = [Math.round(255 * colorRate[dist]), Math.round(144 * colorRate[dist]), 0];
 	}
 	
 	console.log(colorRate);
@@ -184,6 +184,7 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 		})
 		.attr("fill", function(d) {
 			var k = d.id;
+			console.log(fakeColor0[k]);
 			return "rgb(" + fakeColor0[k][0] + "," + fakeColor0[k][1] + "," + fakeColor0[k][2] + ")";
 		})
 }
