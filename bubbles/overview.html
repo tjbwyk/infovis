@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<title>Overview</title>
+
+<style>
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="bubblechart.js"></script>
+
+
+<div id="bubbles" class="example">
+<canvas id="bubblechart" height="700px" width="700px"></canvas>
+		
+<script type="text/javascript">
+	
+	// Declare variable to save data in	
+var myjson;
+	
+// Loading in JSON file	
+$.ajax({
+  url: 'totalTypes.json',
+  async: false,
+  dataType: 'json',
+  success: function (json) {
+  
+	// Save data to myjson variable
+    myjson = json;
+  }
+});
+	
+	mydata = []
+	
+// Colors for all types
+var colors = {"Anti-Social Behaviour": "#0076A3",
+			 "Other Crime": "#FDC68A",
+			 "Violent Crime": "#FFF79A",
+			 "Other theft": "#82CA9D",
+			 "Burglary": "#6ECFF6",
+			 "Criminal damage and arson": "#8493CA",
+			 "Vehicle Crime": "#827B00",
+			 "Shoplifting": "#BC8DBF",
+			 "Violence and sexual offences": "#002157",
+			 "Drugs": "#C4DF9B",
+			 "Robbery": "#B7B7B7",
+			 "Public order": "#9E0B0F",
+			 "Bicycle theft": "#1B1464",
+			 "Theft from the person": "#F7977A",
+			 "Possession of weapons": "#736357",}	
+			 
+// Function to read data for month	
+function set_data(year,month)
+	{
+		var crimeList = myjson[year.toString()][month.toString()]
+		return crimeList;
+	}
+
+
+// Setting month to visualize	
+var crimeList = set_data(2013,5);
+
+
+// Loop through crimeTypes to fill mydata object for bubbles
+for (var type in crimeList)
+	{
+		mydata.push(
+		
+		{
+			label: type,
+			data: parseInt(crimeList[type]),
+			fillColor: colors[type],
+			borderColor: "#FFF",
+			borderSize: 2,
+		});
+	
+	}
+	
+	
+// Creating BubbleChart Object
+	
+		var chart = new BubbleChart({
+		  canvasId: "bubblechart",
+		  metric: "crimes",
+		  usedArea: 0.25,
+		  contain: true,
+		  popoverOpts: {
+			textFont: "Open Sans",
+		  },
+				data : mydata
+			
+		});
+
+		chart.paint();
+
+
+	</script>
+
+
+</div>
+
+
+</body>
+
+</html>
+
+
