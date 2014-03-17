@@ -5,7 +5,6 @@ var MAXN = 50;
 
 var dataTemp = {};
 var dataNew = [];
-var num;
 var date;
 
 var mapSel = Array(MAXN);
@@ -25,20 +24,31 @@ function get_selected_distIDs() {
 	return distIDs;
 }
 
-function cal_crimes_perDist(){
-	var i = 1;
-	num = get_total(id[0], 2010, 12);
+function cal_crimes_perDist(dist){
+	var num = 0;
+	
+	for (var i in dist){
+			
+	num += get_total(dist[i], 2010, 12);
+	
+	}
 	dataNew[0] = new creatJSON(new Date(2010, 12), 12, num);
 	
+	var index = 1;
 	for (year = 2011; year < 2014; year++){
 			for (month = 1; month < 13; month ++){
 			date = new Date(year, month);
-			num = get_total(id[0], year, month);
-			dataNew[i] = new creatJSON(date, month, num);
-			i++;
+			num = 0;
+			for (var i in dist){
+			num += get_total(dist[i], year, month);
+			}
+			dataNew[index] = new creatJSON(date, month, num);
+			index++;
 		}
 	}
 	
+	
+	console.log("id" + dist);
 	console.log(dataNew);
 }
 

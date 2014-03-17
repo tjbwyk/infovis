@@ -110,6 +110,7 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 			
 			//achieve district ID and update timeline data
 			id = get_selected_distIDs();
+			//console.log("map's id:" + id);
 			addTimeline(TCrimes, id);
 		})
 		.on("mousemove", function(d) {

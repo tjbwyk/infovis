@@ -12,10 +12,10 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
 	
 	//bar chart domain  
 	x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
-	var tempMax = d3.max(TCrimes.map(function(d) { return d.crimes; }));
+	/*var tempMax = d3.max(TCrimes.map(function(d) { return d.crimes; }));
 	var tempMin = d3.min(TCrimes.map(function(d) { return d.crimes; })) - 10000;
 	
-	y.domain([tempMin, tempMax]);
+	y.domain([tempMin, tempMax]);*/
 	
 	//timeline domain as same as bar chart domain
 	y2.domain(y.domain());
@@ -50,15 +50,17 @@ var svgTimeline = d3.select("#timeline").append("svg")
     .attr("height", height + margin.top + margin.bottom)
 	.call(barTip);
 
-addTimeline(TCrimes, null);
+addTimeline(TCrimes, "");
 
 //add timeline
 function addTimeline(d, id){
+		
+	if (id.length === 0){
+	//console.log("id is null");
+	var tempMax = d3.max(TCrimes.map(function(d) { return d.crimes; }));
+	var tempMin = d3.min(TCrimes.map(function(d) { return d.crimes; })) - 10000;
 	
-	if (id === null){
-	//console.log(id);
-	
-	//A short-hand, so that I don't have to write "d3.select('svg')" all the time below
+	y.domain([tempMin, tempMax]);
 
 	//Draw the bars
 	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
@@ -83,16 +85,18 @@ function addTimeline(d, id){
 	  .attr("transform", "translate( " + 65  + "," + margin.top + ")")
 	  .on('mouseover', barTip.show)
       .on('mouseout', barTip.hide);
+
+	  
 	}else{
 		
-		cal_crimes_perDist();				
-		
+		cal_crimes_perDist(id);
+				
 		tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
 	    tempMin = d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000;
 	  	y.domain([tempMin, tempMax]);
 		
-	console.log("tempMax" + tempMax);
-		//console.log("total: " + num);
+	//console.log("tempMax" + tempMax);
+	
 	//Draw the bars
 	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
 	svgTimeline.selectAll("g").remove();
