@@ -2,6 +2,10 @@
 
 var nameList = ["Avon and Somerset", "Bedfordshire", "Cambridgeshire", "Cheshire", "City of London", "Cleveland", "Cumbria", "Derbyshire", "Devon and Cornwall", "Dorset", "Durham", "Essex", "Gloucestershire", "Greater Manchester", "Hampshire", "Hertfordshire", "Humberside", "Kent", "Lancashire", "Leicestershire", "Lincolnshire", "Merseyside", "Metropolitan", "Norfolk", "Northamptonshire", "Northumbria", "North Yorkshire", "Nottinghamshire", "South Yorkshire", "Staffordshire", "Suffolk", "Surrey", "Sussex", "Thames Valley", "Warwickshire", "West Mercia", "West Midlands", "West Yorkshire", "Wiltshire", "Dyfed-Powys", "Gwent", "North Wales", "South Wales", "Scotland", "Northern Ireland"];
 
+function sFunc(x) {
+	return 0.5+Math.sqrt(0.5)*Math.sqrt(Math.abs(x-0.5))*(Math.abs(x-0.5)/(x-0.5));
+}
+
 var fakeRatio = new Array(MAXN);
 for (var i = 0; i < MAXN; i++) {
 	fakeRatio[i] = Math.random();
@@ -167,12 +171,12 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 	var colorRate = new Array(MAXN);
 	for (var dist = 1; dist <= 45; dist++) {
 		if (dist != 44) {
-			colorRate[dist] = (crimeRate[dist] - minTotal) / (maxTotal - minTotal);
+			colorRate[dist] = sFunc((crimeRate[dist] - minTotal) / (maxTotal - minTotal));
 		} else {
 			colorRate[dist] = -1;
 		}
-		fakeColor0[dist] = [102 - Math.round(91 * colorRate[dist]), 163 - Math.round(66 * colorRate[dist]), 210 - Math.round(46 * colorRate[dist])];
-		fakeColor1[dist] = [255, 195 - Math.round(49 * colorRate[dist]), 115 - Math.round(115 * colorRate[dist])];
+		fakeColor0[dist] = [235 - Math.round(226 * colorRate[dist]), 246 - Math.round(171 * colorRate[dist]), 254 - Math.round(127 * colorRate[dist])];
+		fakeColor1[dist] = [255 - Math.round(49 * colorRate[dist]), 200 - Math.round(83 * colorRate[dist]), 128 - Math.round(128 * colorRate[dist])];
 	}
 	
 	console.log(colorRate);

@@ -49,8 +49,8 @@ function cal_crimes_perDist(dist){
 	}
 	
 	
-	console.log("id" + dist);
-	console.log(dataNew);
+	//console.log("id" + dist);
+	//console.log(dataNew);
 }
 
 function creatJSON(date,month, crimes){
