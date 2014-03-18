@@ -49,6 +49,7 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 		.enter()	
 		.append("path")
 		.attr("d", path)
+		.attr("fill", "#FFFFFF")
 		.attr("visibility", "hidden")
 		.attr("class", function(d) {
 			if (d.id == 44)
@@ -182,6 +183,7 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 	console.log(colorRate);
 	svgMap.selectAll("path")
 		.data(areaSet.features)
+		.transition()
 		.attr("value", function(d) {
 			return colorRate[d.id];
 		})
