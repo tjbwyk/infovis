@@ -21,10 +21,10 @@
 }
 
 #map.d3-tip {
-	background: rgba(255, 255, 255, 0.8);
+	background: rgba(217, 217, 217, 0.8);
 	color: #000;
 }
 
 #map.d3-tip:after {
-	color: rgba(255, 255, 255, 0.8);
+	color: rgba(217, 217, 217, 0.8);
 }
