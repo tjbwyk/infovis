@@ -18,7 +18,7 @@
 <script type="text/javascript" src="bubblechart.js"></script>
 
 <h1>Overview of whole UK</h1>
-<h2>May 2013</h2>
+<h2>May 2012</h2>
 <div id="bubbles" class="example">
 <canvas id="bubblechart" height="700px" width="700px"></canvas>
 		
@@ -67,7 +67,7 @@ function set_data(year,month)
 
 
 // Setting month to visualize	
-var crimeList = set_data(2013,5);
+var crimeList = set_data(2012,5);
 
 
 // Loop through crimeTypes to fill mydata object for bubbles
@@ -79,8 +79,8 @@ for (var type in crimeList)
 			label: type,
 			data: parseInt(crimeList[type]),
 			fillColor: colors[type],
-			borderColor: "#FFF",
-			borderSize: 2,
+			borderColor: "#000",
+			borderSize: 0,
 		});
 	
 	}
