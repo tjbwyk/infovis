@@ -4,13 +4,13 @@ var nameList = ["Avon and Somerset", "Bedfordshire", "Cambridgeshire", "Cheshire
 
 var fakeRatio = new Array(MAXN);
 for (var i = 0; i < MAXN; i++) {
-	fakeRatio[i] = 0.5 + Math.random() * 0.5;
+	fakeRatio[i] = Math.random();
 }
 var fakeColor0 = new Array(MAXN);
 var fakeColor1 = new Array(MAXN);
 for (var i = 0; i < MAXN; i++) {
-	fakeColor0[i] = [Math.round(10 * fakeRatio[i]), Math.round(100 * fakeRatio[i]), Math.round(164 * fakeRatio[i])];
-	fakeColor1[i] = [Math.round(255 * fakeRatio[i]), Math.round(144 * fakeRatio[i]), 0];
+	fakeColor0[i] = [0, 0, 0];
+	fakeColor1[i] = [0, 0, 0];
 }
 
 var widthM = 350,
@@ -45,10 +45,7 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 		.enter()	
 		.append("path")
 		.attr("d", path)
-		.attr("fill", function(d) {
-			var k = d.id;
-			return "rgb(" + fakeColor0[k][0] + "," + fakeColor0[k][1] + "," + fakeColor0[k][2] + ")";
-		})
+		.attr("visibility", "hidden")
 		.attr("class", function(d) {
 			if (d.id == 44)
 				return "map_scotland";
@@ -120,7 +117,8 @@ d3.json("data/uk_police_force_areas.topojson", function(error, uk) {
 //			d3.select("#tooltip").classed("hidden", false);
 			mapTip.show(d);
 		});
-		
+
+	updateMap(2012, 12, 2013, 12);
 });
 
 function updateMap(beginYear, beginMonth, endYear, endMonth) {
@@ -172,8 +170,8 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 		} else {
 			colorRate[dist] = -1;
 		}
-		fakeColor0[dist] = [Math.round(10 * colorRate[dist]), Math.round(100 * colorRate[dist]), Math.round(164 * colorRate[dist])];
-		fakeColor1[dist] = [Math.round(255 * colorRate[dist]), Math.round(144 * colorRate[dist]), 0];
+		fakeColor0[dist] = [102 - Math.round(91 * colorRate[dist]), 163 - Math.round(66 * colorRate[dist]), 210 - Math.round(46 * colorRate[dist])];
+		fakeColor1[dist] = [255, 195 - Math.round(49 * colorRate[dist]), 115 - Math.round(115 * colorRate[dist])];
 	}
 	
 	console.log(colorRate);
@@ -182,9 +180,13 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 		.attr("value", function(d) {
 			return colorRate[d.id];
 		})
+		.attr("visibility", "display")
 		.attr("fill", function(d) {
 			var k = d.id;
-			console.log(fakeColor0[k]);
-			return "rgb(" + fakeColor0[k][0] + "," + fakeColor0[k][1] + "," + fakeColor0[k][2] + ")";
+			if (!mapSel[d.id]) {
+				return "rgb(" + fakeColor0[k][0] + "," + fakeColor0[k][1] + "," + fakeColor0[k][2] + ")";
+			} else {
+				return "rgb(" + fakeColor1[k][0] + "," + fakeColor1[k][1] + "," + fakeColor1[k][2] + ")";
+			}
 		})
 }
