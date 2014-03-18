@@ -6,11 +6,11 @@ svg {
 }
 
 .bar {
-  fill: blue;
+  fill: #284785 ;
 }
 
 .bar:hover {
-  fill: steelblue ;
+  fill: #6EA3E3 ;
 }
 
 .tick,
