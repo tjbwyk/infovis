@@ -1,6 +1,6 @@
 var margin = {top: 40, right: 50, bottom: 80, left: 60},
     margin2 = {top: 130, right: 50, bottom: 20, left: 65},
-    width = screen.width - margin.left - margin.right - 30,
+    width = 976 - margin.left - margin.right,
     height = 80,	//bar chart height
     height2 = 30;	//timeline height
 
@@ -77,7 +77,7 @@ function addTimeline(d, id){
 	  .attr("x", function(d) {
 		  return x(new Date(d.date));
 		 })
-	  .attr("width", 25)
+	  .attr("width", 20)
 	  .attr("y", function(d) { 
 		  return y(d.crimes);
 		 })
@@ -106,13 +106,13 @@ function addTimeline(d, id){
 	  .attr("x", function(d) {
 		 return x(d.date);
 		 })
-	  .attr("width", 25)
+	  .attr("width", 20)
 	  .attr("y", function(d) { 
 		  return y(d.crimes);
 		 })
 	  .attr("height", function(d) { 
 	  return height - y(d.crimes);  })
-	  .attr("transform", "translate( " + 30 + "," + margin.top + ")")
+	  .attr("transform", "translate( " + 40 + "," + margin.top + ")")
 	  .on('mouseover', barTip.show)
       .on('mouseout', barTip.hide);
 	}
