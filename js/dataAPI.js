@@ -83,13 +83,15 @@ function get_officers(distID)
 function get_dists_all(distIDs)
 {
 	var totalCrimes = 0;
+	for (var num in distIDs){
 	for (i = 2011; i < 2014; i++){
 		for (j = 1; j < 13; j++){
-			totalCrimes += get_total(distIDs,i,j);
+			totalCrimes += get_total(distIDs[num],i,j);
 			}
 		}
-	totalCrimes += get_total(distIDs, 2010, 12);
-	//console.log(totalCrimes);
+	totalCrimes += get_total(distIDs[num], 2010, 12);
+	console.log("get_dists_all" + totalCrimes);
+	}
 	return totalCrimes;
 }
 

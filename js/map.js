@@ -74,6 +74,7 @@ svgMap.selectAll(".uk_police_force_areas")
 		}
 		d3.select(this)
 			.attr("class", mapclass);
+
 	})
 	.on("mouseout", function(d) {
 		//d3.select("#tooltip").classed("hidden", true);
@@ -110,6 +111,8 @@ svgMap.selectAll(".uk_police_force_areas")
 		id = get_selected_distIDs();
 		//console.log("map's id:" + id);
 		addTimeline(TCrimes, id);
+		
+		displayDistName(TCrimes, id);
 	})
 	.on("mousemove", function(d) {
 		var mousePos = d3.mouse(this);

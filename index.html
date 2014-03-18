@@ -14,28 +14,43 @@
         
         <link rel="stylesheet" type="text/css" href="css/map.css"/>
         <link rel="stylesheet" type="text/css" href="css/timeline.css"/>
+        <link rel="stylesheet" type="text/css" href="css/panel.css"/>
 	</head>
     <body>
-        <div align="center" style="margin-left:auto; margin-right:auto;">
-            <table border="0">
-                <tr>
-                    <td width="350px">
-                        <div id="map">
-                        	<script src="js/map.js" type="text/javascript" charset="utf-8"></script>
-                        </div>
-                    </td>
-                    <td>
-                    	BUBBLES
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        <div id="timeline">
-                        	<script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+    <div class="black_panel panel font" style="margin-top: 50px">
+    	<div class="headline">
+   	    <strong>Selected Districts Total Crimes </strong></div>
+        <div class="gray_panel panel">
+        Districts Name: 
+        	<div class="font" id="distNames">
+            <script type="text/javascript" src="js/panel.js" charset="utf-8"></script>
+          </div>
         </div>
+        <div class="panel" id="totalcrimes">
+        Total Crime numbers: 
+        </div>
+    </div>
+    
+    <div >
+    	  <table border="0">
+    	    <tr>
+    	      <td width="350px">
+    	        <div id="map">
+    	          <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+    	          </div>
+    	        </td>
+    	      <td>
+    	        bubbles here
+    	        </td>
+    	      </tr>
+    	    <tr>
+    	      <td colspan=2>
+    	        <div id="timeline">
+    	          <script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
+    	          </div>
+    	        <td>
+   	          </tr>
+    	    </table>
+    </div>
     </body>
 </html>
