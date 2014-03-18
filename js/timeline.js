@@ -182,9 +182,9 @@ function brushed() {
   endDate = d3.time.day.offset(extent1[1], -1);
   console.log([beginDate, endDate]);
   
-  var beginYear = beginDate.getFullYear() + 1,
+  var beginYear = beginDate.getFullYear(),
   	  beginMonth = beginDate.getMonth() + 1,
-	  endYear = endDate.getFullYear() + 1,
+	  endYear = endDate.getFullYear(),
 	  endMonth = endDate.getMonth() + 1;
   updateMap(beginYear, beginMonth, endYear, endMonth);
 }

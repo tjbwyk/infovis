@@ -138,6 +138,7 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 				crimeRate[dist] += total;
 				//console.log([yy, mm, dist, total, crimeRate[dist]]);
 			} catch(e) {
+				console.log([dist, yy, mm]);
 				console.log(e);
 			}
 			//console.log(dist);
