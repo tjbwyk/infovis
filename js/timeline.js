@@ -50,28 +50,29 @@ var svgTimeline = d3.select("#timeline").append("svg")
     .attr("height", height + margin.top + margin.bottom)
 	.call(barTip);
 
-addTimeline(TCrimes, "");
 
-//add timeline
-function addTimeline(d, id){
-		
-	if (id.length === 0){
-	//console.log("id is null");
+initTimeline(TCrimes);
+addTimeline(TCrimes, []);
+
+//initialize timeline
+function initTimeline(d) {
 	var tempMax = d3.max(TCrimes.map(function(d) { return d.crimes; }));
 	var tempMin = d3.min(TCrimes.map(function(d) { return d.crimes; })) - 10000;
 	
 	y.domain([tempMin, tempMax]);
 
 	//Draw the bars
-	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
-	svgTimeline.selectAll("g").remove();
-	svgTimeline.selectAll("rect").data(d).enter().append("rect")
+	svgTimeline.selectAll("rect")
+	  .data(d)
+	  .enter()
+	  .append("rect")
 /*	
 //it is the bar chart	  	  
   svgTimeline.selectAll(".bar")
       .data(d)
 	  .enter()
 	  .append("rect")*/
+	  //.transition()
 	  .attr("id", "bars")
 	  .attr("class", "bar")
 	  .attr("x", function(d) {
@@ -79,78 +80,84 @@ function addTimeline(d, id){
 		 })
 	  .attr("width", 20)
 	  .attr("y", function(d) { 
-		  return y(d.crimes);
+		  return height;
 		 })
-	  .attr("height", function(d) { return height - y(d.crimes); })
+	  .attr("height", 0)
 	  .attr("transform", "translate( " + 65  + "," + margin.top + ")")
 	  .on('mouseover', barTip.show)
       .on('mouseout', barTip.hide);
-
 	  
-	}else{
+	//add y axis
+	svgTimeline.append("g")
+	  .attr("id", "y-axis")
+   	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+	// add timeline below the bar chart	  
+	svgTimeline.append("rect")
+		.attr("class", "grid-background")
+		.attr("width",  width)
+		.attr("height", height)
+		.attr("transform", "translate( " + margin.left + "," + margin2.top + ")");
+	
+	//add x axis
+	svgTimeline.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate( " + margin.left + "," + margin2.top + ")")
+		.call(xAxis)
+		.selectAll("text")
+		.attr("x", 6)
+		.attr("y", -12)	
+		.attr("transform", "rotate(90)")
+		.style("text-anchor", null);
 		
-		cal_crimes_perDist(id);
-				
-		tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
-	    tempMin = d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000;
-	  	y.domain([tempMin, tempMax]);
+	var gBrush = svgTimeline.append("g")
+		.attr("class", "brush")
+		.attr("transform", "translate( " + margin.left + "," + margin2.top + ")")
+		.call(brush);
+	
+	gBrush.selectAll("rect")
+		.attr("height", height);
+}
+
+//add timeline
+function addTimeline(d, id){
+	
+	if (id.length === 0) {
+		for (var i = 1; i <= 45; i++) {
+			if (i != 44) {
+				id.push(i);
+			}
+		}
+	}
+		
+	cal_crimes_perDist(id);
+			
+	tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
+	tempMin = d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000;
+	y.domain([tempMin, tempMax]);
 		
 	//console.log("tempMax" + tempMax);
 	
 	//Draw the bars
-	svgTimeline.selectAll("rect").data([]).exit().remove(); //First, remove the old data (if any) like so
-	svgTimeline.selectAll("g").remove();
-	svgTimeline.selectAll("rect").data(dataNew).enter().append("rect")
-	  .attr("id", "bars")
-	  .attr("class", "bar")
-	  .attr("x", function(d) {
-		 return x(d.date);
-		 })
-	  .attr("width", 20)
+	svgTimeline.selectAll("rect")
+	  .data(dataNew)
+  	  .transition()
+	  .duration(1000)
 	  .attr("y", function(d) { 
 		  return y(d.crimes);
 		 })
 	  .attr("height", function(d) { 
-	  return height - y(d.crimes);  })
-	  .attr("transform", "translate( " + 40 + "," + margin.top + ")")
-	  .on('mouseover', barTip.show)
-      .on('mouseout', barTip.hide);
-	}
-	  	  
+	  return height - y(d.crimes);
+	  });
 
-//add y axis
-   svgTimeline.append("g")
+   svgTimeline.select("#y-axis")
+   	  .transition()
+	  .duration(1000)
    	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
       .attr("class", "y axis")
       .call(yAxis);
-	  
-// add timeline below the bar chart	  
-svgTimeline.append("rect").remove();
-svgTimeline.append("rect")
-    .attr("class", "grid-background")
-    .attr("width",  width)
-    .attr("height", height)
-	.attr("transform", "translate( " + margin.left + "," + margin2.top + ")");
-
-//add x axis
-svgTimeline.append("g").remove();
-svgTimeline.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate( " + margin.left + "," + margin2.top + ")")
-    .call(xAxis)
-    .selectAll("text")
-    .attr("x", 6)
-	.attr("y", -12)	
-    .attr("transform", "rotate(90)")
-    .style("text-anchor", null);
-	
-var gBrush = svgTimeline.append("g")
-    .attr("class", "brush")
-	.attr("transform", "translate( " + margin.left + "," + margin2.top + ")")
-    .call(brush);
-
-gBrush.selectAll("rect")
-    .attr("height", height);
 
 }
 		

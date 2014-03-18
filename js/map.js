@@ -184,6 +184,7 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 	svgMap.selectAll("path")
 		.data(areaSet.features)
 		.transition()
+		.duration(1000)
 		.attr("value", function(d) {
 			return colorRate[d.id];
 		})
