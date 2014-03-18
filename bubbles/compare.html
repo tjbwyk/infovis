@@ -4,6 +4,7 @@
 <title>Multiple Bubbles</title>
 
 <style>
+body {background-color:#FFFFF;}
 div.example {float:left;}
 div.example2 {float:left;}
 
@@ -15,7 +16,7 @@ div.example2 {float:left;}
 
 <body>
 <h1>Comparing Metropolitan (left) and Merseyside (right)</h1>
-<h2>February 2013</h2>
+<h2>May 2012</h2>
 <div id="toggletest"><h2><a href="#">Show / Hide Bubbles!</a></h2></div>  
 
 <script type="text/javascript">
@@ -95,7 +96,7 @@ function get_crimes(distID,year,month)
 }
 	
 	
-var crimeList = get_crimes(23,2013,2);
+var crimeList = get_crimes(23,2012,5);
 
 
 // Loop through list, add every type to data object
@@ -107,8 +108,8 @@ for (var type in crimeList)
 			label: typeNames[type],
 			data: parseInt(crimeList[type]),
 			fillColor: colors[typeNames[type]],
-			borderColor: "#FFF",
-			borderSize: 2,
+			borderColor: "#000",
+			borderSize: 0,
 		});
 	
 	}
@@ -200,7 +201,7 @@ function get_crimes(distID,year,month)
 }
 	
 	
-var crimeList = get_crimes(22,2013,2);
+var crimeList = get_crimes(22,2012,5);
 
 for (var type in crimeList)
 	{
@@ -210,8 +211,8 @@ for (var type in crimeList)
 			label: typeNames[type],
 			data: parseInt(crimeList[type]),
 			fillColor: colors[typeNames[type]],
-			borderColor: "#FFF",
-			borderSize: 2,
+			borderColor: "#000",
+			borderSize: 0,
 		});
 	
 	}

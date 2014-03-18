@@ -21,18 +21,7 @@
       if (o.attribution == null) {
         o.attribution = 'before';
       }
-      if (o.attribution) {
-        url = 'https://github.com/jondavidjohn/bubblechart';
-        a = document.createElement('div');
-        a.className = 'bubblechart-attribution';
-        a.innerHTML = "<small>(Powered by <a href=\"" + url + "\">BubbleChart</a>)</small>";
-        if (o.attribution === 'before') {
-          this.canvas.parentNode.insertBefore(a, this.canvas);
-        }
-        if (o.attribution === 'after') {
-          this.canvas.parentNode.insertBefore(a, this.canvas.nextSibling);
-        }
-      }
+
       comment = document.createComment(' BubbleChart by jondavidjohn (http://jondavidjohn.github.io/bubblechart/) ');
       if (this.canvas.firstChild != null) {
         this.canvas.insertBefore(comment, this.canvas.firstChild);
