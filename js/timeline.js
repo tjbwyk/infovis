@@ -24,7 +24,7 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
 var brush = d3.svg.brush()
     .x(x)
     .extent([new Date(2010, 11, 1), new Date(2010, 12, 1)])
-    .on("brush", brushed);
+    .on("brushend", brushended);
 
 var xAxis = d3.svg.axis().scale(x).orient("bottom"),
     yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
@@ -39,11 +39,6 @@ var barTip = d3.tip()
 	.html(function(d) {
 		return "Month: <span style='color: yellow'>" + d.month + "</span><br> TotalCrime: <span style='color: yellow'>"  + d.crimes + "</span>";
 	})
-
-var brush = d3.svg.brush()
-    .x(x)
-    .on("brush", brushed);
-
 
 var svgTimeline = d3.select("#timeline").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -162,11 +157,14 @@ function addTimeline(d, id){
 }
 		
 
-function brushed() {
+function brushended() {
   var extent0 = brush.extent(),
-      extent1;
+      extent1 = extent0.map(d3.time.month.round);
+  if (extent1[1] - extent1[0] === 0) {
+	  extent1 = [d3.time.month.floor(extent0[0]), d3.time.month.ceil(extent0[1])];
+  }
 
-  // if dragging, preserve the width of the extent
+/*  // if dragging, preserve the width of the extent
   if (d3.event.mode === "move") {
     var d0 = d3.time.month.round(extent0[0]),
         d1 = d3.time.month.offset(d0, Math.round((extent0[1] - extent0[0]) / 2678400000));
@@ -182,17 +180,20 @@ function brushed() {
       extent1[0] = d3.time.month.floor(extent0[0]);
       extent1[1] = d3.time.month.ceil(extent0[1]);
     }
-  }
-  d3.select(this).call(brush.extent(extent1));
+  }*/
+  
+  d3.select(this).transition()
+      .call(brush.extent(extent1));
   
   beginDate = extent1[0];
   endDate = d3.time.day.offset(extent1[1], -1);
-  console.log([beginDate, endDate]);
+  //console.log([beginDate, endDate]);
   
   var beginYear = beginDate.getFullYear(),
   	  beginMonth = beginDate.getMonth() + 1,
 	  endYear = endDate.getFullYear(),
 	  endMonth = endDate.getMonth() + 1;
+  console.log([beginYear, beginMonth, endYear, endMonth]);
   updateMap(beginYear, beginMonth, endYear, endMonth);
 }
 

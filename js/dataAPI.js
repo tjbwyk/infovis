@@ -29,6 +29,20 @@ $.ajax({
   }
 });
 
+var areaSet;
+// Loading in JSON file	
+$.ajax({
+  url: 'data/uk_police_force_areas.topojson',
+  async: false,
+  dataType: 'json',
+  success: function (uk) {
+	  
+  //console.log(json + "end");
+	// Save data to TCrimes variable
+    areaSet = topojson.feature(uk, uk.objects.uk_police_force_areas);
+  }
+});
+
 // Function to get population number of district
 function get_population(distID)
 {
