@@ -1,7 +1,7 @@
 var Width = 160, Height = 45;
 
 
-displayDistName(TCrimes, "");
+displayDistName(TCrimes, []);
 
 function displayDistName(TCrimes, id){
 
@@ -11,7 +11,7 @@ var graypanel = d3.select("#distNames");
  
 graypanel.selectAll("text").remove(); 
 
-	if(id === ""){
+	if(id.length === 0){
 		
 		graypanel.append("text")
 		.attr("class", "names")
