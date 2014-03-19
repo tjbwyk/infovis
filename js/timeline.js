@@ -126,8 +126,10 @@ function addTimeline(d, id){
 				tempid.push(i);
 			}
 		}
+	} else {
+		tempid = id;
 	}
-		
+
 	cal_crimes_perDist(tempid);
 			
 	tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
