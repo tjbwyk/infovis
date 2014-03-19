@@ -1,7 +1,6 @@
 var Width = 160, Height = 45;
 
-
-displayDistName(TCrimes, []);
+displayDistName(TCrimes, id);
 
 function displayDistName(TCrimes, id){
 	
