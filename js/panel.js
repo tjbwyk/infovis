@@ -17,6 +17,7 @@ graypanel.selectAll("text").remove();
 		.attr("class", "names")
 		.attr("width", Width)
 		.text("All Districts");
+		
 		displayCrimenumbers(19078624);
 			
 	}else{
