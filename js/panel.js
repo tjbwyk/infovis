@@ -7,21 +7,12 @@ function displayDistName(TCrimes, id){
 
 var name = [];
 
+var id = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45];
+
 var graypanel = d3.select("#distNames");  
  
 graypanel.selectAll("text").remove(); 
 
-	if(id.length === 0){
-		
-		graypanel.append("text")
-		.attr("class", "names")
-		.attr("width", Width)
-		.text("All Districts");
-		
-		displayCrimenumbers(19078624);
-			
-	}else{
-		
 		totalcrimes = get_dists_all(id);
 		
 		for (var i in id){
@@ -36,7 +27,6 @@ graypanel.selectAll("text").remove();
 			.text(name);
 			
 		displayCrimenumbers(totalcrimes);
-	}
 
 }
 
