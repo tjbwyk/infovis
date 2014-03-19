@@ -119,15 +119,16 @@ function initTimeline(d) {
 //add timeline
 function addTimeline(d, id){
 	
+	var tempid = [];
 	if (id.length === 0) {
 		for (var i = 1; i <= 45; i++) {
 			if (i != 44) {
-				id.push(i);
+				tempid.push(i);
 			}
 		}
 	}
 		
-	cal_crimes_perDist(id);
+	cal_crimes_perDist(tempid);
 			
 	tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
 	tempMin = d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000;

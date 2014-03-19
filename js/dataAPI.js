@@ -90,7 +90,7 @@ function get_dists_all(distIDs)
 			}
 		}
 	totalCrimes += get_total(distIDs[num], 2010, 12);
-	console.log("get_dists_all" + totalCrimes);
+//	console.log("get_dists_all" + totalCrimes);
 	}
 	return totalCrimes;
 }
