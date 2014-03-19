@@ -52,3 +52,11 @@
 	vertical-align: middle;
 	padding-top: 10px;
 }
+
+#bars {
+  fill: #284785 ;
+}
+
+.bar:hover {
+  fill: #6EA3E3 ;
+}
