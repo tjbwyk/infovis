@@ -47,7 +47,7 @@ var svgTimeline = d3.select("#timeline").append("svg")
 
 
 initTimeline(TCrimes);
-addTimeline(TCrimes, []);
+updateTimeline(TCrimes, []);
 
 //initialize timeline
 function initTimeline(d) {
@@ -117,7 +117,7 @@ function initTimeline(d) {
 }
 
 //add timeline
-function addTimeline(d, id){
+function updateTimeline(d, id){
 	
 	var tempid = [];
 	if (id.length === 0) {
