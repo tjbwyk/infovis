@@ -17,7 +17,7 @@ function updateParaCoord(distIDs, beginYear, beginMonth, endYear, endMonth) {
 	if (distIDs.length == 0) {
 		 distIDs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45];
 	}
-	for (var crimeType = 2; crimeType <= 16; crimeType++) {
+	for (var crimeType = 1; crimeType <= 16; crimeType++) {
 		data.push(new Array());
 		//console.log(data);
 		for (var i = 0; i < distIDs.length; i++) {
@@ -39,7 +39,7 @@ function updateParaCoord(distIDs, beginYear, beginMonth, endYear, endMonth) {
 			var population;
 			try {
 				population = get_population(distID);
-				data[crimeType - 2].push(total / get_population(distID));
+				data[crimeType - 1].push(total / get_population(distID));
 			} catch(e) {
 				//console.log([distID,e]);
 			}
