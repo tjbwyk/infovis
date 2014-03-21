@@ -4,6 +4,11 @@ var margin = {top: 40, right: 50, bottom: 80, left: 60},
     height = 80,	//bar chart height
     height2 = 30;	//timeline height
 
+var bYear = 2009,
+	bMonth = 12,
+	eYear = 2013,
+	eMonth = 12;
+
 var parseDate = d3.time.format("%b %Y").parse;
 
 var x = d3.time.scale().range([0, width]),		//bar chat rang
@@ -118,7 +123,7 @@ function initTimeline(d) {
 
 //add timeline
 function updateTimeline(d, id){
-	
+	updateParaCoord(get_selected_distIDs(), bYear, bMonth, eYear, eMonth);
 	var tempid = [];
 	if (id.length === 0) {
 		for (var i = 1; i <= 45; i++) {
@@ -156,7 +161,6 @@ function updateTimeline(d, id){
    	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
       .attr("class", "y axis")
       .call(yAxis);
-
 }
 		
 
@@ -196,6 +200,10 @@ function brushended() {
   	  beginMonth = beginDate.getMonth() + 1,
 	  endYear = endDate.getFullYear(),
 	  endMonth = endDate.getMonth() + 1;
+  bYear = beginYear;
+  bMonth = beginMonth;
+  eYear = endYear;
+  eMonth = endMonth;
   console.log([beginYear, beginMonth, endYear, endMonth]);
   updateMap(beginYear, beginMonth, endYear, endMonth);
 }

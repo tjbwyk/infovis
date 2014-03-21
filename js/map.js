@@ -110,7 +110,7 @@ svgMap.selectAll(".uk_police_force_areas")
 		//achieve district ID and update timeline data
 		id = get_selected_distIDs();
 		//console.log("map's id:" + id);
-		addTimeline(TCrimes, id);
+		updateTimeline(TCrimes, id);
 		displayDistName(TCrimes, id);
 	})
 	.on("mousemove", function(d) {
@@ -195,4 +195,6 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 				return "rgb(" + fakeColor1[k][0] + "," + fakeColor1[k][1] + "," + fakeColor1[k][2] + ")";
 			}
 		})
+	
+	updateParaCoord(get_selected_distIDs(), beginYear, beginMonth, endYear, endMonth);
 }

@@ -8,52 +8,55 @@
 		<script type="text/javascript" src="js/d3.v3.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/topojson.v1.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/jquery-2.1.0.min.js" charset="utf-8"></script>
-        <script type="text/javascript" src="js/d3.tip.v0.6.3.js" charset="utf-8"></script>         
+        <script type="text/javascript" src="js/d3.tip.v0.6.3.js" charset="utf-8"></script>  
+        <script type="text/javascript" src="js/d3.parcoords.js" charset="utf-8"></script>       
          
         <script type="text/javascript" src="js/dataAPI.js" charset="utf-8"></script>
-		<script src="js/global.js" type="text/javascript" charset="utf-8"></script>
-        
+		<script type="text/javascript" src="js/global.js" charset="utf-8"></script>
         
         <link rel="stylesheet" type="text/css" href="css/map.css"/>
         <link rel="stylesheet" type="text/css" href="css/timeline.css"/>
         <link rel="stylesheet" type="text/css" href="css/panel.css"/>
+        <link rel="stylesheet" type="text/css" href="css/d3.parcoords.css"/>
 	</head>
     <body>
-    <div class="black_panel panel font" style="margin-top: 50px">
-    	<div class="headline">
-   	    <strong>Selected Districts Total Crimes </strong></div>
-        <div class="gray_panel panel">
-        Districts Name: 
-        	<div class="font" id="distNames">
-            <script type="text/javascript" src="js/panel.js" charset="utf-8"></script>
-          </div>
+        <div class="black_panel panel font" style="margin-top: 50px">
+            <div class="headline">
+            	<strong>Selected Districts Total Crimes </strong>
+            </div>
+            <div class="gray_panel panel">
+            	Districts Name: 
+                <div class="font" id="distNames">
+                	<script type="text/javascript" src="js/panel.js" charset="utf-8"></script>
+              	</div>
+            </div>
+            <div class="panel" id="totalcrimes">
+            	Total Crime numbers: 
+            	<p class="number">18934559</p>
+            </div>
         </div>
-        <div class="panel" id="totalcrimes">
-        Total Crime numbers: 
-        <p class="number">18934559</p>
+        <div>
+			<table border="0">
+				<tr>
+					<td width="350px">
+                    	<div id="map">
+                      		<script type="text/javascript" src="js/map.js" charset="utf-8"></script>
+                      	</div>
+                    </td>
+                    <td>
+                    	<div id="para_coord" class="parcoords" style="width:624px;height:407px">
+                            <script type="text/javascript" src="js/para_coord.js" charset="utf-8"></script>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <div id="timeline" >
+                            <script type="text/javascript" src="js/timeline.js" charset="utf-8"></script>
+                        </div>
+                    <td>
+                </tr>
+			</table>
         </div>
-    </div>
-    
-    <div >
-    	  <table border="0">
-    	    <tr>
-    	      <td width="350px">
-    	        <div id="map">
-    	          <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
-    	          </div>
-    	        </td>
-    	      <td>
-    	        bubbles here
-    	        </td>
-    	      </tr>
-    	    <tr>
-    	      <td colspan=2>
-    	        <div id="timeline">
-    	          <script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
-    	          </div>
-    	        <td>
-   	          </tr>
-    	    </table>
-    </div>
     </body>
 </html>
