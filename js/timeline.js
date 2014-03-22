@@ -122,10 +122,21 @@ function initTimeline(d) {
 }
 
 //add timeline
-function updateTimeline(d, id){
-	updateParaCoord(get_selected_distIDs(), bYear, bMonth, eYear, eMonth);
+function addTimeline(d, id, typeID){
+	
 	var tempid = [];
-	if (id.length === 0) {
+	var type = [];
+	var temp = 0;
+		
+	for (var index in typeID){
+		if (typeID[index] === 1){
+			type.push(parseInt(index)+1);
+		}
+	}
+	console.log(type);
+	
+	//all district and all types
+	if (id.length === 0 && (typeID === [] || type.length === 0)) {
 		for (var i = 1; i <= 45; i++) {
 			if (i != 44) {
 				tempid.push(i);
@@ -135,7 +146,7 @@ function updateTimeline(d, id){
 		tempid = id;
 	}
 
-	cal_crimes_perDist(tempid);
+	cal_crimes_perDist(tempid, type);
 			
 	tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
 	tempMin = d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000;
@@ -161,6 +172,7 @@ function updateTimeline(d, id){
    	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
       .attr("class", "y axis")
       .call(yAxis);
+
 }
 		
 

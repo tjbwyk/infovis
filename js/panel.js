@@ -1,6 +1,7 @@
 var Width = 160, Height = 45;
 
 displayDistName(TCrimes, id);
+checkbox();
 
 function displayDistName(TCrimes, id){
 	
@@ -16,7 +17,7 @@ function displayDistName(TCrimes, id){
 	}
 	
 	var graypanel = d3.select("#distNames");  
-	 
+	
 	graypanel.selectAll("text").remove(); 
 
 	totalcrimes = get_dists_all(id);
@@ -60,4 +61,15 @@ total.selectAll("rect").remove();
 			
 console.log("crimenumbers" + numbers);*/
 
+
 }
+
+/*function checkbox(){
+
+var str=document.getElementsByName("CrimeType");
+
+for (var i in str){
+	console.log(str[i]);
+	}	
+}
+*/

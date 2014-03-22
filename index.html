@@ -8,55 +8,122 @@
 		<script type="text/javascript" src="js/d3.v3.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/topojson.v1.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="js/jquery-2.1.0.min.js" charset="utf-8"></script>
-        <script type="text/javascript" src="js/d3.tip.v0.6.3.js" charset="utf-8"></script>  
-        <script type="text/javascript" src="js/d3.parcoords.js" charset="utf-8"></script>       
+        <script type="text/javascript" src="js/d3.tip.v0.6.3.js" charset="utf-8"></script>         
          
         <script type="text/javascript" src="js/dataAPI.js" charset="utf-8"></script>
-		<script type="text/javascript" src="js/global.js" charset="utf-8"></script>
+		<script src="js/global.js" type="text/javascript" charset="utf-8"></script>
+        
         
         <link rel="stylesheet" type="text/css" href="css/map.css"/>
         <link rel="stylesheet" type="text/css" href="css/timeline.css"/>
         <link rel="stylesheet" type="text/css" href="css/panel.css"/>
-        <link rel="stylesheet" type="text/css" href="css/d3.parcoords.css"/>
 	</head>
     <body>
-        <div class="black_panel panel font" style="margin-top: 50px">
+    <div class="black_panel panel font"> 
+    	<div class="headline">
+   	    Selected Districts(Bar will change accordingly)</div>
+        
+        	<p class="names" id="distNames">
+           <script type="text/javascript" src="js/panel.js" charset="utf-8"></script>
+        	</p>
+        <div id="totalcrimes">
             <div class="headline">
-            	<strong>Selected Districts Total Crimes </strong>
+            Total Crime numbers: 
             </div>
-            <div class="gray_panel panel">
-            	Districts Name: 
-                <div class="font" id="distNames">
-                	<script type="text/javascript" src="js/panel.js" charset="utf-8"></script>
-              	</div>
-            </div>
-            <div class="panel" id="totalcrimes">
-            	Total Crime numbers: 
-            	<p class="number">18934559</p>
-            </div>
+        	<p class="number">18934559</p>
         </div>
-        <div>
-			<table border="0">
-				<tr>
-					<td width="350px">
-                    	<div id="map">
-                      		<script type="text/javascript" src="js/map.js" charset="utf-8"></script>
-                      	</div>
-                    </td>
-                    <td>
-                    	<div id="para_coord" class="parcoords" style="width:624px;height:407px">
+        <div class="crimetypes">
+          <div class="headline">
+            Crime Types: 
+            </div>
+        <p id="typescheckbox">        
+            <input type="checkbox" name="CrimeType" value="1" id="CrimeType_1" checked="checked" />
+            Anti-social behaviour<br>
+          
+            <input type="checkbox" name="CrimeType" value="2" id="CrimeType_2" checked="checked">
+            Bicycle theft<br>
+            
+            <input type="checkbox" name="CrimeType" value="3" id="CrimeType_3" checked="checked">
+            Burglary<br>
+          
+            <input type="checkbox" name="CrimeType" value="4" id="CrimeType_4" checked="checked">
+            Criminal damage and arson
+<br>
+            
+            <input type="checkbox" name="CrimeType" value="5" id="CrimeType_5" checked="checked">
+            Drugs
+<br>
+            <input type="checkbox" name="CrimeType" value="6" id="CrimeType_6" checked="checked">
+            Other crime<br>
+            
+            <input type="checkbox" name="CrimeType" value="7" id="CrimeType_7" checked="checked">
+           Other theft
+<br>
+          
+            <input type="checkbox" name="CrimeType" value="8" id="CrimeType_8" checked="checked">
+            Possession of weapons
+<br>
+            
+            <input type="checkbox" name="CrimeType" value="9" id="CrimeType_9" checked="checked">
+            Public disorder and weapons
+<br>
+          
+            <input type="checkbox" name="CrimeType" value="10" id="CrimeType_10" checked="checked">
+            Public order
+<br>
+            
+            <input type="checkbox" name="CrimeType" value="11" id="CrimeType_11" checked="checked">
+           Robbery
+<br>
+            
+            <input type="checkbox" name="CrimeType" value="12" id="CrimeType_12" checked="checked">
+           Shoplifting
+<br>
+            
+            <input type="checkbox" name="CrimeType" value="13" id="CrimeType_13" checked="checked">
+            Theft from the person
+<br>
+            
+            <input type="checkbox" name="CrimeType" value="14" id="CrimeType_14" checked="checked">
+            Vehicle crime
+<br>
+            
+            <input type="checkbox" name="CrimeType" value="15" id="CrimeType_15" checked="checked">
+           Violence and sexual offences
+<br>
+
+            <input type="checkbox" name="CrimeType" value="16" id="CrimeType_16" checked="checked">
+           Violent crime</p>
+        <p style="text-align:right">
+          <input type="submit" name="submit" id="submit" value="Update" onClick="checkbox()">
+          <br>
+        </p>
+        </div>
+    </div>
+    
+    <div >
+    	  <table border="0">
+    	    <tr>
+    	      <td width="350px">
+    	        <div id="map">
+    	          <script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+    	          </div>
+    	        </td>
+    	      <td>
+    	       <div id="para_coord" class="parcoords" style="width:624px;height:407px">
                             <script type="text/javascript" src="js/para_coord.js" charset="utf-8"></script>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2>
-                        <div id="timeline" >
-                            <script type="text/javascript" src="js/timeline.js" charset="utf-8"></script>
-                        </div>
-                    <td>
-                </tr>
-			</table>
-        </div>
+    	        </td>
+    	      </tr>
+    	    <tr>
+    	      <td colspan=2>
+    	        
+                <div id="timeline">
+				<script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
+    	          </div>
+    	        <td>
+   	          </tr>
+    	    </table>
+    </div>
     </body>
 </html>

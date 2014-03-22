@@ -67,3 +67,8 @@ svg {
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }
+
+.play_button {
+	position: relative;
+	float: left;
+}

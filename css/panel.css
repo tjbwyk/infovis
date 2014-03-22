@@ -13,12 +13,10 @@
 
 .names{
 	font-family:Roboto,Arial,sans-serif;
-	font-size:10px;
 	color: #FFF;
 	opacity: 1;!important;
-	text-align: left;
-	display: inline;
-	 word-wrap: break-word; word-break: normal;
+	text-align: center;
+	word-wrap: break-word; word-break: normal;
 }
 
 .number{
@@ -34,29 +32,31 @@
 }
 
 .black_panel{
-	background-color:black;
+	background-color: #284785;
 	opacity: 0.8;
 }
 
 .gray_panel{
-	background-color: #333;
+	background-color: #CCC;
 	opacity: 0.5;
 	border: 1px solid #FFF;
 	width: 194px;
 	float: none;
 	margin-left: 2px;
+	color: #000;
 }
 
 .headline{
-	height: 30px;
 	vertical-align: middle;
 	padding-top: 10px;
+	font-weight:bold;
+	text-align: center;
+	background-color: #0B3466;
 }
 
-#bars {
-  fill: #284785 ;
-}
-
-.bar:hover {
-  fill: #6EA3E3 ;
+.crimetypes{
+	font-family:Roboto,Arial,sans-serif;
+	text-align: left;
+	word-wrap: break-word; word-break: normal;
+	border: 1px solid #FFF;
 }
