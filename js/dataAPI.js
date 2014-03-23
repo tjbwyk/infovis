@@ -68,9 +68,8 @@ function get_total(distID,year,month)
 // Function to get total crimes in a month in one district
 function get_crimes(distID,typeID,year,month)
 {
-	//console.log("myjson " + myjson + "typeID" + typeID);
-	var crimes = myjson[distID]['crimes'][year.toString()][month.toString()]['perType'][typeID];
-	return crimes;
+	var numbers = myjson[distID]["crimes"][year][month]["perType"][typeID];
+	return numbers;
 }
 
 // Function to get number of police officers in district
@@ -96,62 +95,20 @@ function get_dists_all(distIDs)
 	return totalCrimes;
 }
 
-//Funtion to get total crime number
-function get_dataNew_all()
-{
-	var totalCrimes = 0;
-	for (var num in dataNew){
-	for (i = 0; i < 37; i++){
-			totalCrimes += dataNew[i].crimes;
+//function to calculate per month different districts and different crime types total crime numbers
+function get_crimes_perType_perDist(dists, types, year, month){
+	var totalcrimes = 0;
+	date = new Date(year, month);
+	
+	for (var iDist in dists){
+		for (var iType in types){			
+			totalcrimes += get_crimes(dists[iDist], types[iType],year,month);
+			//console.log("get_crimes_perType_perDist: " + "dists[iDist]: " + dists[iDist] + " types[iType]: " + types[iType] + " totalcrimes: " + totalcrimes);
 		}
 	}
-	return totalCrimes;
-}
-
-function checkbox(){
-
-var str = document.getElementsByName("CrimeType");
-
-for (var i =0; i < 16; i ++){
-		if(str[i].checked === true){
-		
-		typeID[i] = 1;
-		j++;
-		}else{
-		typeID[i] = 0;
-		}
-	}
-console.log(typeID);
-calTypes(typeID);
-}
-
-//calculate by crime types and update map & timeline bar & total crime numbers
-function calTypes(typeID){
-	var crimenumbers, temp = 0;
-	var type = [];
+	var TempObject = new creatJSON(date, month, totalcrimes);
 	
-	for (var i in typeID){
-		if (typeID[i] === 1){
-			type.push(parseInt(i)+1);
-		}
-	}
-	console.log(type);
-	
-	//if user doesn't select any district and all crime types as default
-	if(id.length === 0 & type.length === 0){
-		crimenumbers = 18934559;
-	}else if (id.length === 0 & type.length !=0 ){
-	//all districts but part of crime types
-		id = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45];
-		updateTimeline(TCrimes, id, typeID);
-		crimenumbers = get_dataNew_all();
-	}else{
-	//part dirstricts and part of crime types
-		
-	}
-	
-	displayCrimenumbers(crimenumbers);
-	console.log(crimenumbers);
+	return TempObject;
 }
 
 /*

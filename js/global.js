@@ -6,7 +6,10 @@ var MAXN = 50;
 
 var dataTemp = {};
 var dataNew = [];
-var typeID = [];
+var typeID = [];	//0 or 1
+var Crimetype = [];	// transfer typeID to types
+var crimes_perType_perDist = []; 
+var TotalCrimeNumbers = 18934559;
 var date;
 
 var mapSel = Array(MAXN);
@@ -26,10 +29,11 @@ function get_selected_distIDs() {
 	return distIDs;
 }
 
-function cal_crimes_perDist(dist, types){
+function cal_crimes_perDist(dist){
 	var num = 0;
-	//console.log(typeID.length);
-	if (types.length === 0){
+	var crimes = [];
+	//all types
+	if (Crimetype.length === 0 || Crimetype.length === 16){
 		for (var i in dist){
 				
 		num += get_total(dist[i], 2010, 12);
@@ -50,35 +54,30 @@ function cal_crimes_perDist(dist, types){
 			}
 		}
 	}else{
-	//calculate crime types & districts crimes per month
-		for (var i in dist){
-				for (var j in typeID)
-				//console.log("j: " + j + " typeID: " + types[j]);
-				num += get_crimes(dist[i], types[j], 2010, 12);
+	//calculate crime types & districts crimes whole time period
+	
+		TotalCrimeNumbers = 0;
 		
-		}
-		dataNew[0] = new creatJSON(new Date(2010, 12), 12, num);
+		dataNew[0] = get_crimes_perType_perDist(dist,Crimetype, 2010, 12 );
+		
+		TotalCrimeNumbers += dataNew[0].crimes;
+		
+		console.log(Crimetype);
 		
 		var index = 1;
 		for (year = 2011; year < 2014; year++){
 				for (month = 1; month < 13; month ++){
 				date = new Date(year, month);
-				num = 0;
-				for (var i in dist){
-				for (var j in types){
-					//console.log("types: " + j + " "+ types[j])
-					num += get_crimes(dist[i], types[j], year, month);
-					}
-				}
-				dataNew[index] = new creatJSON(date, month, num);
+				dataNew[index] = get_crimes_perType_perDist(dist,Crimetype, year, month);
+				TotalCrimeNumbers += dataNew[index].crimes;
 				index++;
 			}
 		}
 			
 	}
 	
-	//console.log("id" + dist);
-	//console.log(dataNew);
+	console.log("Crimetype: " + Crimetype + "totalcrimenumbers: " + TotalCrimeNumbers + "dataNew： ");
+	console.log(dataNew);
 }
 
 function creatJSON(date,month, crimes){

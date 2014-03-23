@@ -64,12 +64,35 @@ console.log("crimenumbers" + numbers);*/
 
 }
 
-/*function checkbox(){
+function checkbox(){
 
-var str=document.getElementsByName("CrimeType");
+var str = document.getElementsByName("CrimeType");
 
-for (var i in str){
-	console.log(str[i]);
-	}	
+for (var i =0; i < 16; i ++){
+		if(str[i].checked === true){
+		typeID[i] = 1;
+		}else{
+		typeID[i] = 0;
+		}
+	}
+//console.log(typeID);
+calTypes(typeID);
 }
-*/
+
+
+//calculate by crime types and update map & timeline bar & total crime numbers
+function calTypes(typeID){
+	var crimenumbers, temp = 0;
+	Crimetype = [];	
+	
+	for (var i in typeID){
+		if (typeID[i] === 1){
+			Crimetype.push(parseInt(i)+1);
+		}
+	}
+	console.log("id" + id);
+	
+	updateTimeline(TCrimes, id);	
+	
+	displayCrimenumbers(TotalCrimeNumbers);
+}
