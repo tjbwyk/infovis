@@ -196,5 +196,5 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 			}
 		})
 	
-	updateParaCoord(get_selected_distIDs(), beginYear, beginMonth, endYear, endMonth);
+	updateParaCoord(get_selected_distIDs(), [], beginYear, beginMonth, endYear, endMonth);
 }

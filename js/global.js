@@ -76,8 +76,8 @@ function cal_crimes_perDist(dist){
 			
 	}
 	
-	console.log("Crimetype: " + Crimetype + "totalcrimenumbers: " + TotalCrimeNumbers + "dataNew： ");
-	console.log(dataNew);
+	//console.log("Crimetype: " + Crimetype + "totalcrimenumbers: " + TotalCrimeNumbers + "dataNew： ");
+	//console.log(dataNew);
 }
 
 function creatJSON(date,month, crimes){

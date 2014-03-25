@@ -47,7 +47,20 @@ $.ajax({
 function get_population(distID)
 {
 	var population = myjson[distID]['population']
-	return population;
+	return Number(population);
+}
+
+// Function to get UK population
+function get_uk_population()
+{
+	var total = 0;
+	for (var i = 1; i <= 45; i++)
+		if (i != 44) {
+			total += get_population(i);
+			//console.log([i, total]);
+		}
+	//console.log(total);
+	return total;
 }
 
 // Function to get name of district
@@ -113,6 +126,12 @@ function get_crimes_perType_perDist(dists, types, year, month){
 
 //function to calculate total crime numbers of different districts nad different crime types in a time range
 function get_crimes_perType_perDist_monthRange(dists, types, beginYear, beginMonth, endYear, endMonth) {
+	if (dists.length === 0) {
+		dists = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45];
+	}
+	if (types.length === 0) {
+		types = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+	}
 	var totalcrimes = 0;
 	for (var iType in types) {
 		for (var iDist in dists) {
@@ -125,7 +144,7 @@ function get_crimes_perType_perDist_monthRange(dists, types, beginYear, beginMon
 					temp = get_crimes(dists[iDist], types[iType], yy, mm);
 					totalcrimes += temp;
 				} catch(e) {
-					console.log(e);
+//					console.log(e);
 				}
 			}
 		}
