@@ -63,7 +63,7 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 		for (var i in dimensions) {
 			pp.push([position(dimensions[i]), y(d[i])]);
 		}
-		console.log(pp);
+		//console.log(pp);
 		return line(pp);
 	}
 	
@@ -108,9 +108,11 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 	
 	for (var i in distIDs) {
 		//console.log(distIDs[i]);
-		dimensions[i] = get_name(distIDs[i]);
+		dimensions.push(get_name(distIDs[i]));
 	}
 	x.domain(dimensions);
+	//console.log(dimensions);
+	//console.log(data);
 	
 	// Extract the list of dimensions and create a scale for each.
 	/*x.domain(dimensions = d3.keys(cars[0]).filter(function(d) {
@@ -140,8 +142,8 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 	  		   .data(dimensions)
 			   .enter().append("g")
 			   .attr("class", "dimension")
-			   .attr("transform", function(d, i) { return "translate(" + x(i) + ")"; })
-	  /*.call(d3.behavior.drag()
+			   .attr("transform", function(d, i) { return "translate(" + x(d) + ")"; })
+	  .call(d3.behavior.drag()
 		.on("dragstart", function(d) {
 		  dragging[d] = this.__origin__ = x(d);
 		  background.attr("visibility", "hidden");
@@ -165,7 +167,7 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 			  .delay(500)
 			  .duration(0)
 			  .attr("visibility", null);
-		}))*/;
+		}));
 	
 	// Add an axis and title.
 	g.append("g")
