@@ -6,15 +6,8 @@ var paraCoord;
 
 var colorgen = d3.scale.category20();
 
-function initParaCoord() {
-}
-
-function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMonth) {
-	//console.log(distIDs);
-	//console.log(typeIDs);
-	d3.select("#para_coord").selectAll("*").remove();
-	
-	var data = [];
+function prepareData(diatIDs, typeIDs, beginYear, beginMonth, endYear, endMonth) {
+	var data=[];
 	if (typeIDs.length === 0) {
 		typeIDs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 	}
@@ -36,6 +29,18 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 			}
 		}
 	}
+	return data;
+}
+
+function initParaCoord() {
+}
+
+function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMonth) {
+	//console.log(distIDs);
+	//console.log(typeIDs);
+	d3.select("#para_coord").selectAll("*").remove();
+	
+	var data = prepareData(distIDs, typeIDs, beginYear, beginMonth, endYear, endMonth);
 	
 	console.log(data);
 	var i = 0;

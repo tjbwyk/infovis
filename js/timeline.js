@@ -16,7 +16,7 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
     y2 = d3.scale.linear().range([height2, 0]);
 	
 	//bar chart domain  
-	x.domain([new Date(2010,11, 1), new Date(2013,12, 1)] );
+	x.domain([new Date(2010,11, 0), new Date(2013,12, 0)] );
 	/*var tempMax = d3.max(TCrimes.map(function(d) { return d.crimes; }));
 	var tempMin = d3.min(TCrimes.map(function(d) { return d.crimes; })) - 10000;
 	
@@ -28,7 +28,7 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
   	
 var brush = d3.svg.brush()
     .x(x)
-    .extent([new Date(2010, 11, 1), new Date(2010, 12, 1)])
+    .extent([new Date(2010, 11, 0), new Date(2010, 12, 0)])
     .on("brushend", brushended);
 
 var xAxis = d3.svg.axis().scale(x).orient("bottom"),
