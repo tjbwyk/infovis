@@ -123,7 +123,6 @@ function initTimeline(d) {
 
 //add timeline
 function updateTimeline(d, id){
-	updateParaCoord(get_selected_distIDs(), [], bYear, bMonth, eYear, eMonth);
 	
 	var distid = [];
 	var temp = 0;
@@ -168,7 +167,8 @@ function updateTimeline(d, id){
    	  .attr("transform", "translate( " + margin.left + "," + margin.top + ")")
       .attr("class", "y axis")
       .call(yAxis);
-
+	
+	updateParaCoord(get_selected_distIDs(), [], bYear, bMonth, eYear, eMonth);
 }
 		
 
