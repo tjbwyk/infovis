@@ -111,6 +111,28 @@ function get_crimes_perType_perDist(dists, types, year, month){
 	return TempObject;
 }
 
+//function to calculate total crime numbers of different districts nad different crime types in a time range
+function get_crimes_perType_perDist_monthRange(dists, types, beginYear, beginMonth, endYear, endMonth) {
+	var totalcrimes = 0;
+	for (var iType in types) {
+		for (var iDist in dists) {
+			for (var yy = beginYear, mm = beginMonth; !((yy > endYear) || (yy == endYear && mm > endMonth)); mm++) {
+				if (mm > 12) {
+					yy++;
+					mm = 1;
+				}
+				try {
+					temp = get_crimes(dists[iDist], types[iType], yy, mm);
+					totalcrimes += temp;
+				} catch(e) {
+					console.log(e);
+				}
+			}
+		}
+	}
+	return totalcrimes;
+}
+
 /*
 /// Examples calling the functions:
 
