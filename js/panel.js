@@ -92,7 +92,7 @@ function calTypes(typeID){
 	}
 	console.log("id" + id);
 	
-	updateTimeline(TCrimes, id);	
+	updateTimeline(Crimetype, TCrimes, id);	
 	
 	displayCrimenumbers(TotalCrimeNumbers);
 }

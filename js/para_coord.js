@@ -1,8 +1,12 @@
 // JavaScript Document
 
+var crimeList = ["Anti-social behaviour", "Bicycle theft", "Burglary", "Criminal damage and arson", "Drugs", "Other crime", "Other theft", "Possession of weapons", "Public disorder and weapons", "Public order", "Robbery", "Shoplifting", "Theft from the person", "Vehicle crime", "Violence and sexual offences", "Violent crime"];
+
 var MAXC = 16;
 
 var paraCoord;
+
+var colors = d3.scale.category20().range();
 
 function prepareData(diatIDs, typeIDs, beginYear, beginMonth, endYear, endMonth) {
 	var data=[];
@@ -48,30 +52,15 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 	//console.log(distIDs);
 	//console.log(typeIDs);
 	
-	function position(d) {
-	  var v = dragging[d];
-	  return v == null ? x(d) : v;
-	}
-	
-	function transition(g) {
-	  return g.transition().duration(500);
-	}
-	
-	// Returns the path for a given data point.
-	function path(d) {
-		var pp = [];
-		for (var i in dimensions) {
-			pp.push([position(dimensions[i]), y(d[i])]);
-		}
-		//console.log(pp);
-		return line(pp);
+	if (typeIDs.length === 0) {
+		typeIDs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 	}
 	
 	d3.select("#para_coord").selectAll("*").remove();
 	
 	var canvas = document.getElementById("para_coord");
 	
-	var m = [30, 10, 10, 10],
+	var m = [30, 20, 10, 100],
 		w = canvas.offsetWidth - m[1] - m[3],
 		h = canvas.offsetHeight - m[0] - m[2];
 	
@@ -80,9 +69,11 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 		dragging = {};
 	
 	var line = d3.svg.line(),
-		axis = d3.svg.axis().orient("left"),
+		axis = d3.svg.axis().orient("right").ticks(0),
 		background,
-		foreground;
+		foreground,
+		points,
+		typename;
 		
 	var svg = d3.select("#para_coord").append("svg")
 		.attr("width", w + m[1] + m[3])
@@ -135,7 +126,47 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 					.selectAll("path")
 	  				.data(data)
 					.enter().append("path")
-	  				.attr("d", path);
+	  				.attr("d", path)
+					.attr("stroke", function(d, i) {
+						return colors[typeIDs[i]];
+					})
+					.attr("stroke-width", "2");
+
+	// Add points
+	for (var i = 0; i < typeIDs.length; i++) {
+		points = svg.append("g")
+					.selectAll(".point")
+					.data(data[i])
+					.enter().append("circle")
+					.attr("cx", function(d, i) {
+						return position(dimensions[i]);
+					})
+					.attr("cy", function(d, i) {
+						return y(d);
+					})
+					.attr("fill", colors[typeIDs[i]])
+					.attr("r", 4)
+					.attr("opacity", 0.8);
+	}
+	
+	// Add crimetype
+	typename = svg.append("g")
+				  .selectAll(".typename")
+				  .data(data)
+				  .enter().append("text")
+				  .attr("fill", function(d, i) {
+					  return colors[typeIDs[i]];
+				  })
+				  .attr("x", position(dimensions[0]))
+				  .attr("y", function(d, i) {
+					  return y(d[0]);
+				  })
+				  .attr("dx", "-5px")
+				  .attr("text-anchor", "end")
+				  .attr("alignment-baseline", "central")
+				  .text(function(d, i) {
+					  return crimeList[typeIDs[i] - 1];
+				  });
 	
 	// Add a group element for each dimension.
 	var g = svg.selectAll(".dimension")
@@ -143,7 +174,7 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 			   .enter().append("g")
 			   .attr("class", "dimension")
 			   .attr("transform", function(d, i) { return "translate(" + x(d) + ")"; })
-	  .call(d3.behavior.drag()
+	  /*.call(d3.behavior.drag()
 		.on("dragstart", function(d) {
 		  dragging[d] = this.__origin__ = x(d);
 		  background.attr("visibility", "hidden");
@@ -167,12 +198,18 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 			  .delay(500)
 			  .duration(0)
 			  .attr("visibility", null);
-		}));
+		}))*/;
 	
 	// Add an axis and title.
 	g.append("g")
 	  .attr("class", "axis")
-	  .each(function(d) { d3.select(this).call(axis.scale(y)); })
+	  .each(function(d, i) {
+		  var tempAxis = axis.scale(y);
+		  if (i === dimensions.length - 1) {
+			  tempAxis = tempAxis.ticks(5);
+		  }
+		  d3.select(this).call(tempAxis);
+		})
 	  .append("text")
 	  .attr("text-anchor", "middle")
 	  .attr("y", -9)
@@ -185,7 +222,25 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 	.selectAll("rect")
 	  .attr("x", -8)
 	  .attr("width", 16);*/
+	  
+	function position(d) {
+	  var v = dragging[d];
+	  return v == null ? x(d) : v;
+	}
 	
+	function transition(g) {
+	  return g.transition().duration(500);
+	}
+	
+	// Returns the path for a given data point.
+	function path(d) {
+		var pp = [];
+		for (var i in dimensions) {
+			pp.push([position(dimensions[i]), y(d[i])]);
+		}
+		//console.log(pp);
+		return line(pp);
+	}
 }
 
 //updateParaCoord([], [], 2010, 12, 2013, 12);

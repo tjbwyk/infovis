@@ -124,9 +124,14 @@ svgMap.selectAll(".uk_police_force_areas")
 		mapTip.show(d);
 	});
 
-updateMap(2012, 12, 2013, 12);
+updateMap([], 2012, 12, 2013, 12);
 
-function updateMap(beginYear, beginMonth, endYear, endMonth) {
+function updateMap(crimeIDs, beginYear, beginMonth, endYear, endMonth) {
+	
+	if (crimeIDs.length === 0) {
+		crimeIDs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+	}
+	
 	var crimeRate = new Array(MAXN);
 	for (var dist = 0; dist < MAXN; dist++)
 		crimeRate[dist] = 0;
@@ -196,5 +201,5 @@ function updateMap(beginYear, beginMonth, endYear, endMonth) {
 			}
 		})
 	
-	updateParaCoord(get_selected_distIDs(), [], beginYear, beginMonth, endYear, endMonth);
+//	updateParaCoord(get_selected_distIDs(), [], beginYear, beginMonth, endYear, endMonth);
 }

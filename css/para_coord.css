@@ -14,8 +14,8 @@ svg {
 
 .foreground path {
   fill: none;
-  stroke: steelblue;
-  stroke-opacity: .7;
+/*  stroke: steelblue;*/
+  stroke-opacity: .8;
 }
 
 .brush .extent {

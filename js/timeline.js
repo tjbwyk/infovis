@@ -52,7 +52,7 @@ var svgTimeline = d3.select("#timeline").append("svg")
 
 
 initTimeline(TCrimes);
-updateTimeline(TCrimes, []);
+updateTimeline([], TCrimes, []);
 
 //initialize timeline
 function initTimeline(d) {
@@ -122,7 +122,7 @@ function initTimeline(d) {
 }
 
 //add timeline
-function updateTimeline(d, id){
+function updateTimeline(typeIDs, d, id){
 	
 	var distid = [];
 	var temp = 0;
@@ -169,6 +169,7 @@ function updateTimeline(d, id){
       .call(yAxis);
 	
 	updateParaCoord(get_selected_distIDs(), [], bYear, bMonth, eYear, eMonth);
+	updateMap(bYear, bMonth, eYear, eMonth);
 }
 		
 
