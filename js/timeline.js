@@ -23,7 +23,7 @@ var x = d3.time.scale().range([0, width]),		//bar chat rang
   	
 var brush = d3.svg.brush()
     .x(x)
-    .extent([new Date(2010, 11, 0), new Date(2010, 12, 0)])
+    .extent([new Date(2010, 11, 0), new Date(2014, 0, 0)])
     .on("brushend", brushended);
 
 var xAxis = d3.svg.axis().scale(x).orient("bottom"),
