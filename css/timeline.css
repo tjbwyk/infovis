@@ -45,11 +45,18 @@ svg {
 }
 
 .grid-background {
-  fill: #fff;
+  fill: #ddd;
 }
 
 .grid line,
 .grid path {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path,
+.x.axis line {
   fill: none;
   stroke: #fff;
   shape-rendering: crispEdges;

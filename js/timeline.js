@@ -2,7 +2,7 @@ var margin = {top: 0, right: 50, bottom: 50, left: 60},
     margin2 = {top: 65, right: 50, bottom: 20, left: 65},
     width = 976 - margin.left - margin.right,
     height = 60,	//bar chart height
-    height2 = 40;	//timeline height
+    height2 = 43;	//timeline height
 
 var x = d3.time.scale().range([0, width]),		//bar chat rang
     y = d3.scale.linear().range([height, 0]),
@@ -24,7 +24,7 @@ var brush = d3.svg.brush()
     .extent([new Date(2010, 11, 0), new Date(2014, 0, 0)])
     .on("brushend", brushended);
 
-var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.time.format("%b-%y")),
+var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.time.format("%b-%y")).tickSize(height2),
     yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
 	
 //brush x axis
