@@ -17,7 +17,7 @@ for (var i = 0; i < MAXN; i++) {
 	fakeColor1[i] = [0, 0, 0];
 }
 
-var widthM = 350,
+var widthM = 320,
 	heightM = 400;
 
 var mapTip = d3.tip()
@@ -35,7 +35,7 @@ var svgMap = d3.select("#map")
 
 	
 var projection = d3.geo.albers()
-					   .center([1.5, 53.5])
+					   .center([1.3, 53.5])
 					   .rotate([4.4, 0])
 					   .parallels([50, 60])
 					   .scale(3000)
