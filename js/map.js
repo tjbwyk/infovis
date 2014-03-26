@@ -110,7 +110,7 @@ svgMap.selectAll(".uk_police_force_areas")
 		//achieve district ID and update timeline data
 		//console.log("map's id:" + id);
 		updateTimeline(get_selected_crimeIDs(), TCrimes, get_selected_distIDs());
-		displayDistName(TCrimes, id);
+		//displayDistName(TCrimes, id);
 		updateParaCoord(get_selected_distIDs(), get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
 	})
 	.on("mousemove", function(d) {

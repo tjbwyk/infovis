@@ -96,5 +96,5 @@ function calTypes(typeID){
 	updateMap(get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
 	updateParaCoord(get_selected_distIDs(), get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
 	
-	displayCrimenumbers(TotalCrimeNumbers);
+	//displayCrimenumbers(TotalCrimeNumbers);
 }
