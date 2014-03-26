@@ -4,11 +4,6 @@ var margin = {top: 40, right: 50, bottom: 80, left: 60},
     height = 80,	//bar chart height
     height2 = 30;	//timeline height
 
-var bYear = 2009,
-	bMonth = 12,
-	eYear = 2013,
-	eMonth = 12;
-
 var parseDate = d3.time.format("%b %Y").parse;
 
 var x = d3.time.scale().range([0, width]),		//bar chat rang
@@ -49,10 +44,6 @@ var svgTimeline = d3.select("#timeline").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 	.call(barTip);
-
-
-initTimeline(TCrimes);
-updateTimeline([], TCrimes, []);
 
 //initialize timeline
 function initTimeline(d) {
@@ -168,8 +159,8 @@ function updateTimeline(typeIDs, d, id){
       .attr("class", "y axis")
       .call(yAxis);
 	
-	updateParaCoord(get_selected_distIDs(), [], bYear, bMonth, eYear, eMonth);
-	updateMap(bYear, bMonth, eYear, eMonth);
+//	updateParaCoord(get_selected_distIDs(), [], bYear, bMonth, eYear, eMonth);
+//	updateMap(bYear, bMonth, eYear, eMonth);
 }
 		
 
@@ -213,8 +204,9 @@ function brushended() {
   bMonth = beginMonth;
   eYear = endYear;
   eMonth = endMonth;
-  console.log([beginYear, beginMonth, endYear, endMonth]);
-  updateMap(beginYear, beginMonth, endYear, endMonth);
+//  console.log([beginYear, beginMonth, endYear, endMonth]);
+  updateMap(get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
+  updateParaCoord(get_selected_distIDs(), get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
 }
 
 function type(d) {
@@ -225,3 +217,6 @@ function type(d) {
 	}
   return d;
 }
+
+initTimeline(TCrimes);
+updateTimeline(get_selected_crimeIDs(), TCrimes, get_selected_distIDs());

@@ -12,6 +12,11 @@ var crimes_perType_perDist = [];
 var TotalCrimeNumbers = 18934559;
 var date;
 
+var bYear = 2010,
+	bMonth = 12,
+	eYear = 2013,
+	eMonth = 12;
+
 var mapSel = Array(MAXN);
 var id = Array();
 
@@ -27,6 +32,17 @@ function get_selected_distIDs() {
 		}
 	}
 	return distIDs;
+}
+
+function get_selected_crimeIDs() {
+	var str = document.getElementsByName("CrimeType");
+	typeID = [];
+	for (var i =0; i < 16; i ++){
+		if(str[i].checked === true) {
+			typeID.push(i + 1);
+		}
+	}
+	return typeID;
 }
 
 function cal_crimes_perDist(dist){

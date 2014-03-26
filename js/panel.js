@@ -92,7 +92,9 @@ function calTypes(typeID){
 	}
 	console.log("id" + id);
 	
-	updateTimeline(Crimetype, TCrimes, id);	
+	updateTimeline(get_selected_crimeIDs(), TCrimes, get_selected_distIDs());
+	updateMap(get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
+	updateParaCoord(get_selected_distIDs(), get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
 	
 	displayCrimenumbers(TotalCrimeNumbers);
 }

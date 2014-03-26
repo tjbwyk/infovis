@@ -243,4 +243,4 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 	}
 }
 
-//updateParaCoord([], [], 2010, 12, 2013, 12);
+updateParaCoord(get_selected_distIDs(), get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);

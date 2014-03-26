@@ -108,10 +108,10 @@ svgMap.selectAll(".uk_police_force_areas")
 		.attr("class", mapclass);
 		
 		//achieve district ID and update timeline data
-		id = get_selected_distIDs();
 		//console.log("map's id:" + id);
-		updateTimeline(TCrimes, id);
+		updateTimeline(get_selected_crimeIDs(), TCrimes, get_selected_distIDs());
 		displayDistName(TCrimes, id);
+		updateParaCoord(get_selected_distIDs(), get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
 	})
 	.on("mousemove", function(d) {
 		var mousePos = d3.mouse(this);
@@ -124,8 +124,6 @@ svgMap.selectAll(".uk_police_force_areas")
 		mapTip.show(d);
 	});
 
-updateMap([], 2012, 12, 2013, 12);
-
 function updateMap(crimeIDs, beginYear, beginMonth, endYear, endMonth) {
 	
 	if (crimeIDs.length === 0) {
@@ -135,7 +133,7 @@ function updateMap(crimeIDs, beginYear, beginMonth, endYear, endMonth) {
 	var crimeRate = new Array(MAXN);
 	for (var dist = 0; dist < MAXN; dist++)
 		crimeRate[dist] = 0;
-	for (var yy = beginYear, mm = beginMonth; !((yy > endYear) || (yy == endYear && mm > endMonth)); mm++) {
+/*	for (var yy = beginYear, mm = beginMonth; !((yy > endYear) || (yy == endYear && mm > endMonth)); mm++) {
 		if (mm > 12) {
 			yy++;
 			mm = 1;
@@ -152,16 +150,16 @@ function updateMap(crimeIDs, beginYear, beginMonth, endYear, endMonth) {
 			}
 			//console.log(dist);
 		}
+	}*/
+	for (var dist = 1; dist <= 45; dist++) {
+		if (dist != 44) {
+			crimeRate[dist] = get_crimes_perType_perDist_monthRange([dist], crimeIDs, beginYear, beginMonth, endYear, endMonth)
+		}
 	}
 	for (var dist = 1; dist <= 45; dist++) {
-		var population;
-		try {
-			population = get_population(dist);
-			crimeRate[dist] /= population;
-		} catch(e) {
-//			console.log(e);
+		if (dist != 44) {
+			crimeRate[dist] /= get_population(dist);
 		}
-		//console.log(dist);
 	}
 	
 	var minTotal = MAXINT,
@@ -203,3 +201,5 @@ function updateMap(crimeIDs, beginYear, beginMonth, endYear, endMonth) {
 	
 //	updateParaCoord(get_selected_distIDs(), [], beginYear, beginMonth, endYear, endMonth);
 }
+
+updateMap(get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
