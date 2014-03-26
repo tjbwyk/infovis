@@ -6,11 +6,11 @@ svg {
 }
 
 .bar {
-  fill: #284785 ;
+  fill: #9abed9 ;
 }
 
 .bar:hover {
-  fill: #6EA3E3 ;
+  fill: #f8a467 ;
 }
 
 .tick,
@@ -64,7 +64,7 @@ svg {
 
 .brush .extent {
   stroke: #fff;
-  fill-opacity: .125;
+  fill-opacity: .1;
   shape-rendering: crispEdges;
 }
 
