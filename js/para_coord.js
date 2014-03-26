@@ -17,7 +17,7 @@ function prepareData(diatIDs, typeIDs, beginYear, beginMonth, endYear, endMonth)
 		crimeType = typeIDs[iType];
 		data.push(new Array());
 		//console.log(data);
-		data[iType].push(get_crimes_perType_perDist_monthRange([], [crimeType], beginYear, beginMonth, endYear, endMonth) / get_uk_population());
+		data[iType].push(get_crimes_perType_perDist_monthRange([], [crimeType], beginYear, beginMonth, endYear, endMonth) / get_uk_population() * 1000);
 		for (var iDist in distIDs) {
 			distID = distIDs[iDist];
 			//console.log(distID);
@@ -25,7 +25,7 @@ function prepareData(diatIDs, typeIDs, beginYear, beginMonth, endYear, endMonth)
 			var population;
 			try {
 				population = get_population(distID);
-				data[iType].push(total / get_population(distID));
+				data[iType].push(total / get_population(distID) * 1000);
 			} catch(e) {
 				//console.log([distID,e]);
 			}
@@ -60,7 +60,7 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 	
 	var canvas = document.getElementById("para_coord");
 	
-	var m = [30, 20, 10, 100],
+	var m = [30, 20, 30, 100],
 		w = canvas.offsetWidth - m[1] - m[3],
 		h = canvas.offsetHeight - m[0] - m[2];
 	
@@ -214,6 +214,15 @@ function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMo
 	  .attr("text-anchor", "middle")
 	  .attr("y", -9)
 	  .text(String);
+	
+	// Add crimes/1000 people
+	svg.append("g")
+	 .append("text")
+	 .attr("fill", "#000")
+	 .attr("text-anchor", "middle")
+	 .attr("x", position(dimensions[dimensions.length - 1]))
+	 .attr("y", y(minV) + 20)
+	 .text("Crimes / 1000 people");
 	
 	// Add and store a brush for each axis.
 /*	g.append("g")
