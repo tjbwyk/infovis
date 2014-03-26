@@ -1,10 +1,8 @@
-var margin = {top: 40, right: 50, bottom: 80, left: 60},
-    margin2 = {top: 130, right: 50, bottom: 20, left: 65},
+var margin = {top: 0, right: 50, bottom: 50, left: 60},
+    margin2 = {top: 65, right: 50, bottom: 20, left: 65},
     width = 976 - margin.left - margin.right,
-    height = 80,	//bar chart height
-    height2 = 30;	//timeline height
-
-var parseDate = d3.time.format("%b %Y").parse;
+    height = 60,	//bar chart height
+    height2 = 40;	//timeline height
 
 var x = d3.time.scale().range([0, width]),		//bar chat rang
     y = d3.scale.linear().range([height, 0]),
@@ -26,7 +24,7 @@ var brush = d3.svg.brush()
     .extent([new Date(2010, 11, 0), new Date(2014, 0, 0)])
     .on("brushend", brushended);
 
-var xAxis = d3.svg.axis().scale(x).orient("bottom"),
+var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.time.format("%y-%b")),
     yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
 	
 //brush x axis
@@ -89,7 +87,7 @@ function initTimeline(d) {
 	svgTimeline.append("rect")
 		.attr("class", "grid-background")
 		.attr("width",  width)
-		.attr("height", height)
+		.attr("height", height2)
 		.attr("transform", "translate( " + margin.left + "," + margin2.top + ")");
 	
 	//add x axis
@@ -109,7 +107,14 @@ function initTimeline(d) {
 		.call(brush);
 	
 	gBrush.selectAll("rect")
-		.attr("height", height);
+		.attr("height", height2);
+	
+	svgTimeline.append("text")
+			.attr("x", 65)
+			.attr("y", 8)
+			.attr("text-anchor", "left")
+			.attr("fill", "#000")
+			.text("Crimes");
 }
 
 //add timeline
