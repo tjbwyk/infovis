@@ -24,7 +24,7 @@ var brush = d3.svg.brush()
     .extent([new Date(2010, 11, 0), new Date(2014, 0, 0)])
     .on("brushend", brushended);
 
-var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.time.format("%y-%b")),
+var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.time.format("%b-%y")),
     yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
 	
 //brush x axis
