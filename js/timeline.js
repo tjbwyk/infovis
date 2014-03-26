@@ -1,5 +1,5 @@
-var margin = {top: 0, right: 50, bottom: 50, left: 60},
-    margin2 = {top: 65, right: 50, bottom: 20, left: 65},
+var margin = {top: 0, right: 20, bottom: 50, left: 60},
+    margin2 = {top: 65, right: 20, bottom: 20, left: 65},
     width = 976 - margin.left - margin.right,
     height = 60,	//bar chart height
     height2 = 43;	//timeline height
