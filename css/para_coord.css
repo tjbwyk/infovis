@@ -15,7 +15,7 @@ svg {
 .foreground path {
   fill: none;
 /*  stroke: steelblue;*/
-  stroke-opacity: .8;
+/*  stroke-opacity: .8;*/
 }
 
 .axis line, .axis path {

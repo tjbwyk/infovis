@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+		<title>Crime Analysis in UK</title>
+        
+		<script type="text/javascript" src="js/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/topojson.v1.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/jquery-2.1.0.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/d3.tip.v0.6.3.js" charset="utf-8"></script> 
+         
+        <script type="text/javascript" src="js/dataAPI.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/global.js" charset="utf-8"></script>
+        
+        
+        <link rel="stylesheet" type="text/css" href="css/map.css"/>
+        <link rel="stylesheet" type="text/css" href="css/timeline.css"/>
+        <link rel="stylesheet" type="text/css" href="css/panel.css"/>
+        <link rel="stylesheet" type="text/css" href="css/para_coord.css"/>
+	</head>
+    <body>
+    	<div>
+    		<table border="0">
+            	<tr>
+                	<td colspan="2">
+                      <div class="black_panel panel font"> 
+                       	<script type="text/javascript" src="js/panel.js" charset="utf-8"></script>
+                    	<table border="0" width="978px">
+                        	<tr>
+                            	<td>
+                                	<input type="checkbox" name="CrimeType" value="1" id="CrimeType_1" checked="checked" onclick="checkbox()" />
+                                    Anti-social behaviour
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="2" id="CrimeType_2" checked="checked" onclick="checkbox()" />
+                                    Bicycle theft
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="3" id="CrimeType_3" checked="checked" onclick="checkbox()" />
+                                    Burglary
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="4" id="CrimeType_4" checked="checked" onclick="checkbox()" />
+                                    Criminal damage and arson
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<input type="checkbox" name="CrimeType" value="5" id="CrimeType_5" checked="checked" onclick="checkbox()" />
+                                    Drugs
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="6" id="CrimeType_6" checked="checked" onclick="checkbox()" />
+                                    Other crime
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="7" id="CrimeType_7" checked="checked" onclick="checkbox()" />
+                                    Other theft
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="8" id="CrimeType_8" checked="checked" onclick="checkbox()" />
+                                    Possession of weapons
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<input type="checkbox" name="CrimeType" value="9" id="CrimeType_9" checked="checked" onclick="checkbox()" />
+                                    Public disorder and weapons
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="10" id="CrimeType_10" checked="checked" onclick="checkbox()" />
+                                    Public order
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="11" id="CrimeType_11" checked="checked" onclick="checkbox()" />
+                                    Robbery
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="12" id="CrimeType_12" checked="checked" onclick="checkbox()" />
+                                    Shoplifting
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td>
+                                	<input type="checkbox" name="CrimeType" value="13" id="CrimeType_13" checked="checked" onclick="checkbox()" />
+                                    Theft from the person
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="14" id="CrimeType_14" checked="checked" onclick="checkbox()" />
+                                    Vehicle crime
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="15" id="CrimeType_15" checked="checked" onclick="checkbox()" />
+                                    Violence and sexual offences
+                                </td>
+                                <td>
+                                	<input type="checkbox" name="CrimeType" value="16" id="CrimeType_16" checked="checked" onclick="checkbox()" />
+                                    Violent crime
+                                </td>
+                            </tr>
+                        </table>
+                      </div>
+                    </td>
+                </tr>
+    	    	<tr>
+    	      		<td width="320px">
+    	        		<div id="map">
+    	          			<script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+    	          		</div>
+    	        	</td>
+    	      		<td>
+    	       			<div id="para_coord" class="parcoords" style="width:654px;height:407px">
+                  			<script type="text/javascript" src="js/para_coord.js" charset="utf-8"></script>
+                		</div>
+    	        	</td>
+    	      	</tr>
+    	    	<tr>
+    	      		<td colspan=2>
+    	        		<div id="timeline">
+                        	<script src="js/timeline.js" type="text/javascript" charset="utf-8"></script>
+                    	</div>
+    	        	</td>
+   	          	</tr>
+            </table>
+    	</div>
+    </body>
+</html>
