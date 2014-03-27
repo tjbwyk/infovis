@@ -46,7 +46,7 @@ var svgTimeline = d3.select("#timeline").append("svg")
 //initialize timeline
 function initTimeline(d) {
 	var tempMax = d3.max(TCrimes.map(function(d) { return d.crimes; }));
-	var tempMin = d3.min(TCrimes.map(function(d) { return d.crimes; })) - 10000;
+	var tempMin = Math.max(0, d3.min(TCrimes.map(function(d) { return d.crimes; })) - 1000);
 	
 	y.domain([tempMin, tempMax]);
 
@@ -140,7 +140,7 @@ function updateTimeline(typeIDs, d, id){
 	cal_crimes_perDist(distid);
 			
 	tempMax = d3.max(dataNew.map(function(d) { return d.crimes; }));
-	tempMin = d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000;
+	tempMin = Math.max(0, d3.min(dataNew.map(function(d) { return d.crimes; })) - 1000);
 	y.domain([tempMin, tempMax]);
 		
 	//console.log("tempMax" + tempMax);
