@@ -18,7 +18,7 @@ for (var i = 0; i < MAXN; i++) {
 }
 
 var widthM = 320,
-	heightM = 400;
+	heightM = 350;
 
 var mapTip = d3.tip()
 	.attr("id", "map")
@@ -35,7 +35,7 @@ var svgMap = d3.select("#map")
 
 	
 var projection = d3.geo.albers()
-					   .center([1.3, 53.5])
+					   .center([1.3, 53.2])
 					   .rotate([4.4, 0])
 					   .parallels([50, 60])
 					   .scale(3000)

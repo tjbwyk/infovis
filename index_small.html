@@ -21,84 +21,88 @@
 	</head>
     <body>
     	<div>
-    		<table border="0">
+    		<table border="0" align="center">
             	<tr>
                 	<td colspan="2">
                       <div class="black_panel panel font"> 
                        	<script type="text/javascript" src="js/panel.js" charset="utf-8"></script>
-                    	<table border="0" width="978px">
-                        	<tr>
+                        <table width="100%">
+                        <tr>
+                        <td>
+                        	<div style="text-align:center;font-size:36px;padding:0px">Crime in the<br>United Kindom</div>
+                        </td>
+                        <td width="600px">
+                        <table width="600px" align="right">
+                        	<tr style="font-family:'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;color:orange;font-weight:bold;font-size:16px" valign="top">
                             	<td>
-                                	<input type="checkbox" name="CrimeType" value="1" id="CrimeType_1" checked="checked" onclick="checkbox()" />
-                                    Anti-social behaviour
+                                	Theft
                                 </td>
                                 <td>
-                                	<input type="checkbox" name="CrimeType" value="2" id="CrimeType_2" checked="checked" onclick="checkbox()" />
-                                    Bicycle theft
+                                	Drugs / Violence
                                 </td>
                                 <td>
-                                	<input type="checkbox" name="CrimeType" value="3" id="CrimeType_3" checked="checked" onclick="checkbox()" />
-                                    Burglary
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="4" id="CrimeType_4" checked="checked" onclick="checkbox()" />
-                                    Criminal damage and arson
+                                	Public Disorder / Weapons
                                 </td>
                             </tr>
-                            <tr>
+                            <tr valign="top" style="vertical-align:2px">
                             	<td>
-                                	<input type="checkbox" name="CrimeType" value="5" id="CrimeType_5" checked="checked" onclick="checkbox()" />
-                                    Drugs
+                                	<input type="checkbox" name="CrimeType" value="11" id="CrimeType_11" checked="checked" onChange="checkbox()" sel="img/theft_btns/btn_sel_theft_01.png" unsel="img/theft_btns/btn_unsel_theft_01.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/theft_btns/btn_sel_theft_01.png)" for="CrimeType_11"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_11">Robbery</label><br>
+                                    <input type="checkbox" name="CrimeType" value="3" id="CrimeType_3" checked="checked" onChange="checkbox()" sel="img/theft_btns/btn_sel_theft_02.png" unsel="img/theft_btns/btn_unsel_theft_02.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/theft_btns/btn_sel_theft_02.png)" for="CrimeType_3"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_3">Burglary</label><br>
+                                    <input type="checkbox" name="CrimeType" value="13" id="CrimeType_13" checked="checked" onChange="checkbox()" sel="img/theft_btns/btn_sel_theft_03.png" unsel="img/theft_btns/btn_unsel_theft_03.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/theft_btns/btn_sel_theft_03.png)" for="CrimeType_13"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_13">Theft from the Person</label><br>
+                                    <input type="checkbox" name="CrimeType" value="12" id="CrimeType_12" checked="checked" onChange="checkbox()" sel="img/theft_btns/btn_sel_theft_04.png" unsel="img/theft_btns/btn_unsel_theft_04.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/theft_btns/btn_sel_theft_04.png)" for="CrimeType_12"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_12">Shoplifting</label><br>
+                                    <input type="checkbox" name="CrimeType" value="2" id="CrimeType_2" checked="checked" onChange="checkbox()" sel="img/theft_btns/btn_sel_theft_05.png" unsel="img/theft_btns/btn_unsel_theft_05.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/theft_btns/btn_sel_theft_05.png)" for="CrimeType_2"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_2">Bicycle Theft</label><br>
+                                    <input type="checkbox" name="CrimeType" value="7" id="CrimeType_7" checked="checked" onChange="checkbox()" sel="img/theft_btns/btn_sel_theft_06.png" unsel="img/theft_btns/btn_unsel_theft_06.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/theft_btns/btn_sel_theft_06.png)" for="CrimeType_7"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_7">Other Theft</label><br>
                                 </td>
                                 <td>
-                                	<input type="checkbox" name="CrimeType" value="6" id="CrimeType_6" checked="checked" onclick="checkbox()" />
-                                    Other crime
+                                    <input type="checkbox" name="CrimeType" value="4" id="CrimeType_4" checked="checked" onChange="checkbox()" sel="img/viol_btns/btn_viol_sel_01.png" unsel="img/viol_btns/btn_viol_unsel_01.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/viol_btns/btn_viol_sel_01.png)" for="CrimeType_4"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_4">Criminal Damage and Arson</label><br>
+                                    <input type="checkbox" name="CrimeType" value="16" id="CrimeType_16" checked="checked" onChange="checkbox()" sel="img/viol_btns/btn_viol_sel_02.png" unsel="img/viol_btns/btn_viol_unsel_02.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/viol_btns/btn_viol_sel_02.png)" for="CrimeType_16"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_16">Violent Crime</label><br>
+                                    <input type="checkbox" name="CrimeType" value="15" id="CrimeType_15" checked="checked" onChange="checkbox()" sel="img/viol_btns/btn_viol_sel_03.png" unsel="img/viol_btns/btn_viol_unsel_03.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/viol_btns/btn_viol_sel_03.png)" for="CrimeType_15"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_15">Violence and Sexual Offences</label><br>
+                                    <input type="checkbox" name="CrimeType" value="5" id="CrimeType_5" checked="checked" onChange="checkbox()" sel="img/viol_btns/btn_viol_sel_04.png" unsel="img/viol_btns/btn_viol_unsel_04.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/viol_btns/btn_viol_sel_04.png)" for="CrimeType_5"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_5">Drugs</label><br>
+                                    <input type="checkbox" name="CrimeType" value="6" id="CrimeType_6" checked="checked" onChange="checkbox()" sel="img/viol_btns/btn_viol_sel_05.png" unsel="img/viol_btns/btn_viol_unsel_05.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/viol_btns/btn_viol_sel_05.png)" for="CrimeType_6"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_6">Other Crime</label><br>
                                 </td>
                                 <td>
-                                	<input type="checkbox" name="CrimeType" value="7" id="CrimeType_7" checked="checked" onclick="checkbox()" />
-                                    Other theft
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="8" id="CrimeType_8" checked="checked" onclick="checkbox()" />
-                                    Possession of weapons
+                                    <input type="checkbox" name="CrimeType" value="9" id="CrimeType_9" checked="checked" onChange="checkbox()" sel="img/pub_btns/btn_sel_pub_01.png" unsel="img/pub_btns/btn_unsel_pub_01.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/pub_btns/btn_sel_pub_01.png)" for="CrimeType_9"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_9">Public Disorder and Weapons</label><br>
+                                    <input type="checkbox" name="CrimeType" value="10" id="CrimeType_10" checked="checked" onChange="checkbox()" sel="img/pub_btns/btn_sel_pub_02.png" unsel="img/pub_btns/btn_unsel_pub_02.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/pub_btns/btn_sel_pub_02.png)" for="CrimeType_10"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_10">Public Order</label><br>
+                                    <input type="checkbox" name="CrimeType" value="8" id="CrimeType_8" checked="checked" onChange="checkbox()" sel="img/pub_btns/btn_sel_pub_03.png" unsel="img/pub_btns/btn_unsel_pub_03.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/pub_btns/btn_sel_pub_03.png)" for="CrimeType_8"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_8">Possession of Weapons</label><br>
+                                    <input type="checkbox" name="CrimeType" value="1" id="CrimeType_1" checked="checked" onChange="checkbox()" sel="img/pub_btns/btn_sel_pub_04.png" unsel="img/pub_btns/btn_unsel_pub_04.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/pub_btns/btn_sel_pub_04.png)" for="CrimeType_1"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_1">Anti-Social Behaviour</label><br>
+                                    <input type="checkbox" name="CrimeType" value="14" id="CrimeType_14" checked="checked" onChange="checkbox()" sel="img/pub_btns/btn_sel_pub_05.png" unsel="img/pub_btns/btn_unsel_pub_05.png" />
+                                    <label name="CrimeTypeBox" style="background-image:url(img/pub_btns/btn_sel_pub_05.png)" for="CrimeType_14"></label>
+                                    <label name="CrimeTypeName" for="CrimeType_14">Vehicle Crime</label><br>
                                 </td>
                             </tr>
-                            <tr>
-                            	<td>
-                                	<input type="checkbox" name="CrimeType" value="9" id="CrimeType_9" checked="checked" onclick="checkbox()" />
-                                    Public disorder and weapons
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="10" id="CrimeType_10" checked="checked" onclick="checkbox()" />
-                                    Public order
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="11" id="CrimeType_11" checked="checked" onclick="checkbox()" />
-                                    Robbery
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="12" id="CrimeType_12" checked="checked" onclick="checkbox()" />
-                                    Shoplifting
-                                </td>
-                            </tr>
-                            <tr>
-                            	<td>
-                                	<input type="checkbox" name="CrimeType" value="13" id="CrimeType_13" checked="checked" onclick="checkbox()" />
-                                    Theft from the person
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="14" id="CrimeType_14" checked="checked" onclick="checkbox()" />
-                                    Vehicle crime
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="15" id="CrimeType_15" checked="checked" onclick="checkbox()" />
-                                    Violence and sexual offences
-                                </td>
-                                <td>
-                                	<input type="checkbox" name="CrimeType" value="16" id="CrimeType_16" checked="checked" onclick="checkbox()" />
-                                    Violent crime
-                                </td>
-                            </tr>
+                        </table>
+                        </td>
+                        </tr>
                         </table>
                       </div>
                     </td>
@@ -110,7 +114,7 @@
     	          		</div>
     	        	</td>
     	      		<td>
-    	       			<div id="para_coord" class="parcoords" style="width:654px;height:407px">
+    	       			<div id="para_coord" class="parcoords" style="width:654px;height:350px">
                   			<script type="text/javascript" src="js/para_coord.js" charset="utf-8"></script>
                 		</div>
     	        	</td>

@@ -51,7 +51,7 @@ function initParaCoord() {
 function updateParaCoord(distIDs, typeIDs, beginYear, beginMonth, endYear, endMonth) {
 	//console.log(distIDs);
 	//console.log(typeIDs);
-	
+	console.log(typeIDs);
 	if (typeIDs.length === 0) {
 		typeIDs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 	}

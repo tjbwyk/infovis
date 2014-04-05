@@ -2,13 +2,12 @@
 /* CSS Document */
 
 .font{
-	font-family:Roboto,Arial,sans-serif;
-	font-size:14px;
-	font-weight:400;
+	font-family:'Gill Sans', 'Gill Sans MT', 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+	font-size:13px;
 	text-decoration:none;
-	text-align: left;	
-	color: #FFF;
-	opacity: 1;!important;
+	text-align: left;
+	color: #000;
+	opacity: 0.8;!important;
 }
 
 .names{
@@ -24,16 +23,13 @@
 }
 
 .panel{
-	align: center;
 	/*width: 200px;*/
 	position: relative;
-	float: left;
 /*	margin-top: 10px;*/
 }
 
 .black_panel{
-	background-color: #6c94b4;
-	opacity: 0.8;
+	background-color: rgba(108,148,180,0.1);
 }
 
 .gray_panel{
@@ -48,7 +44,6 @@
 
 .headline{
 	vertical-align: middle;
-	padding-top: 10px;
 	font-weight:bold;
 	text-align: center;
 	background-color: #476e8c;
@@ -59,4 +54,28 @@
 	text-align: left;
 	word-wrap: break-word; word-break: normal;
 	border: 1px solid #FFF;
+}
+
+input[type=checkbox] {
+    display:none;
+  }
+
+input[type=checkbox] + label
+{
+   height: 14px;
+   width: 14px;
+   display:inline-block;
+   padding: 0 0 0 0px;
+}
+
+input[type=checkbox]:checked + label
+{
+	height: 14px;
+	width: 14px;
+	display:inline-block;
+	padding: 0 0 0 0px;
+}
+
+label[name=CrimeTypeName] {
+	vertical-align: 2px;
 }

@@ -39,7 +39,7 @@ function get_selected_crimeIDs() {
 	typeID = [];
 	for (var i =0; i < 16; i ++){
 		if(str[i].checked === true) {
-			typeID.push(i + 1);
+			typeID.push(parseInt(str[i].value));
 		}
 	}
 	return typeID;
@@ -78,7 +78,7 @@ function cal_crimes_perDist(dist){
 		
 		TotalCrimeNumbers += dataNew[0].crimes;
 		
-		console.log(Crimetype);
+		//console.log(Crimetype);
 		
 		var index = 1;
 		for (year = 2011; year < 2014; year++){

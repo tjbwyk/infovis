@@ -1,7 +1,6 @@
 var Width = 160, Height = 45;
 
 displayDistName(TCrimes, id);
-checkbox();
 
 function displayDistName(TCrimes, id){
 	
@@ -66,17 +65,21 @@ console.log("crimenumbers" + numbers);*/
 
 function checkbox(){
 
-var str = document.getElementsByName("CrimeType");
-
-for (var i =0; i < 16; i ++){
+	var str = document.getElementsByName("CrimeType");
+	var box = document.getElementsByName("CrimeTypeBox");
+	console.log(str);
+	for (var i =0; i < 16; i ++){
+		//console.log(str[i].value);
 		if(str[i].checked === true){
-		typeID[i] = 1;
-		}else{
-		typeID[i] = 0;
+			typeID[parseInt(str[i].value)] = 1;
+			box[i].style.backgroundImage = "url(" + str[i].getAttribute('sel') + ")";
+		} else {
+			typeID[parseInt(str[i].value)] = 0;
+			box[i].style.backgroundImage = "url(" + str[i].getAttribute('unsel') + ")";
 		}
 	}
-//console.log(typeID);
-calTypes(typeID);
+	//console.log(typeID);
+	calTypes(typeID);
 }
 
 
@@ -87,10 +90,11 @@ function calTypes(typeID){
 	
 	for (var i in typeID){
 		if (typeID[i] === 1){
-			Crimetype.push(parseInt(i)+1);
+			//console.log(i);
+			Crimetype.push(i);
 		}
 	}
-	console.log("id" + id);
+	//console.log("id" + id);
 	
 	updateTimeline(get_selected_crimeIDs(), TCrimes, get_selected_distIDs());
 	updateMap(get_selected_crimeIDs(), bYear, bMonth, eYear, eMonth);
@@ -98,3 +102,5 @@ function calTypes(typeID){
 	
 	//displayCrimenumbers(TotalCrimeNumbers);
 }
+
+checkbox();
